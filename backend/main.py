@@ -5,6 +5,7 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from routers.check import router as check_router
 from routers.extract import router as extract_router
 from routers.normalize import router as normalize_router
 from routers.pipeline import router as pipeline_router
