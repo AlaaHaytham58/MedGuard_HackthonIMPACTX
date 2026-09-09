@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers.extract import router as extract_router
+from ddinter.router import router as ddinter_router
 
 app = FastAPI(title="MedGuard Backend (A1 dev server)")
 
@@ -17,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(extract_router)
+app.include_router(ddinter_router)
 
 
 @app.get("/health")

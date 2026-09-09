@@ -5,3 +5,4 @@ venv/
 .venv/
 server.log
 response*.json
+db/*.sqlite*

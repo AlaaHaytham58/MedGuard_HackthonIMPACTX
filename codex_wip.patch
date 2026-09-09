@@ -1,0 +1,38 @@
+diff --git a/backend/.env.example b/backend/.env.example
+index fc5787f..8fe76f2 100644
+--- a/backend/.env.example
++++ b/backend/.env.example
+@@ -1,2 +1,4 @@
+ GEMINI_API_KEY=your-key-here
+ MOCK_EXTRACT=0
++# Optional; defaults to backend/db/ddinter.sqlite. Import explicitly before use.
++# DDINTER_DB_PATH=/absolute/path/to/ddinter.sqlite
+diff --git a/backend/.gitignore b/backend/.gitignore
+index 28cfd01..cbbdc3e 100644
+--- a/backend/.gitignore
++++ b/backend/.gitignore
+@@ -5,3 +5,4 @@ venv/
+ .venv/
+ server.log
+ response*.json
++db/*.sqlite*
+diff --git a/backend/main.py b/backend/main.py
+index d71a333..a043ca0 100644
+--- a/backend/main.py
++++ b/backend/main.py
+@@ -6,6 +6,7 @@ from fastapi import FastAPI
+ from fastapi.middleware.cors import CORSMiddleware
+ 
+ from routers.extract import router as extract_router
++from ddinter.router import router as ddinter_router
+ 
+ app = FastAPI(title="MedGuard Backend (A1 dev server)")
+ 
+@@ -17,6 +18,7 @@ app.add_middleware(
+ )
+ 
+ app.include_router(extract_router)
++app.include_router(ddinter_router)
+ 
+ 
+ @app.get("/health")
