@@ -1,6 +1,7 @@
 # Local interaction catalog foundation
 
-This is a backend-only foundation awaiting the real DDInter CSV schema and data.
+This is a backend-only DDInter catalog foundation. The current scraper contract is
+implemented at the importer boundary; the final scrape is still incomplete.
 It makes no network requests and contains no production seed data or medical name
 mappings. All fixtures in `backend/tests/support.py` are synthetic test data.
 
@@ -24,14 +25,25 @@ or add the future guide's `/check` contract. A future pipeline can call
 
 ## Storage and entities
 
+The authoritative source identity is the DDInter drug ID from `interaction_pairs.csv`.
+Display-name normalization is used only for lookup and presentation. DrugBank IDs are
+preserved when supplied. `pair_id` is the authoritative concrete interaction identity;
+`pair_key` is only an unordered lookup representation, so distinct pair IDs are retained
+even when their drug IDs collide. `pair_details` is optional enrichment and its absence
+does not remove the interaction.
+
 Tables are namespaced to keep integration with a newer backend straightforward:
 
 | Table | Stored information and constraints |
 | --- | --- |
 | `ddinter_drugs` | Internal integer ID, canonical display name, unique normalized name, optional unique DDInter ID |
 | `ddinter_aliases` | Alias, unique normalized alias, canonical drug foreign key |
-| `ddinter_interactions` | Ordered canonical drug IDs, severity, optional type, description, mechanism, management, source reference; unique unordered pair |
-| `ddinter_alternatives` | Original drug, optional alternative drug, optional information/context; a different alternative drug or nonblank information is required |
+| `ddinter_interactions` | Canonical drug IDs, DDInter `pair_id`, definition ID, severity, mechanism, detail URL and optional enrichment; unordered pair uniqueness is not imposed |
+| `ddinter_definitions` | Reusable DDInter interaction definitions keyed by `definition_id` |
+| `ddinter_pair_details` | Optional pair-specific interaction text and management enrichment |
+| `ddinter_references` | Normalized ordered references keyed by pair and reference number |
+| `ddinter_contextual_alternatives` | Pair-scoped alternative, original side, ATC code and source provenance |
+| `ddinter_alternatives` | Legacy synthetic compatibility table; real DDInter alternatives use the contextual table above |
 
 Foreign keys are enabled on every connection. Pair IDs are sorted before insertion;
 database checks require `drug_a_id < drug_b_id`, preventing reversed and self-pairs
@@ -81,13 +93,12 @@ The check response contains:
 Known pairs are still checked when other inputs are unresolved. `complete` means all
 inputs resolved and comparisons finished; it is not a clinical judgment. Duplicates
 alone produce `insufficient_distinct_drugs`. Source severity labels are normalized
-for presentation and kept visible. Recognized labels rank `major > moderate > minor`;
-other labels, including missing severity (`unknown`), have `severity_rank: null`
-and appear after ranked records. Reconcile `service.SEVERITY_RANK` with actual source
-vocabulary before using real data; an unranked record is not inferred to be mild.
+for presentation and kept visible. Recognized labels rank `Major > Moderate > Minor > Unknown`;
+non-contract labels have `severity_rank: null` and appear after ranked records. `Unknown`
+is an exported source value and is not inferred to be mild.
 
-Alternatives return stored source information and optional context. They are not
-filtered for the user's other drugs and are not personalized substitution advice.
+Real DDInter alternatives are returned with concrete pair context (`pair_id`, original
+side and ATC code). They are not personalized substitution advice.
 
 ## API
 
@@ -104,12 +115,18 @@ Pydantic request and response schemas appear in `/docs`. Malformed input uses Fa
 `{"detail": {"error": true, "code": "...", "message": "...", "details": {}}}`.
 Extra multi-check request fields and non-string drug names are rejected.
 
-## CSV mapping boundary (TODO when scraper delivers)
+## CSV mapping boundary
 
-`importer.FIELDS`, `CsvSource`, and `_import_row` are the isolated adapter boundary.
-The database and service never reference CSV headers or filenames. A JSON manifest
-maps domain fields to actual CSV headers. This is an illustrative template, **not a
-claim about the scraper's final filenames or headers**:
+`importer.FIELDS`, `CONTRACT_FILES`, `contract_sources`, `CsvSource`, and `_import_row`
+are the isolated adapter boundary. The current contract maps these files:
+`interaction_definitions.csv`, `interaction_pairs.csv`, `pair_details.csv`,
+`alternatives.csv`, `references.csv`, and `failures.csv`. No aliases or standalone drug
+CSV is required. `failures.csv` is reported as import metadata rather than medical data.
+The importer creates/reuses drugs from pair and alternative rows by DDInter ID.
+
+The legacy generic manifest support remains available for synthetic fixtures. The
+database and service do not reference CSV headers or filenames. A JSON manifest maps
+domain fields to actual CSV headers:
 
 ```json
 {
@@ -160,11 +177,14 @@ order. Alias-to-alias chains and mixed ID/name references within one source are 
 The adapter currently expects one drug, alias, unordered pair or alternative per row.
 Nested JSON, list-valued aliases, multiple alternatives in a cell, HTML cleaning and
 multiple directional records per pair require an explicit adapter decision once the
-real schema arrives. Exact duplicate pairs are skipped; differing data for the same
-pair is rejected as a conflict, without overwriting details or choosing a severity.
-DDInter ID/name conflicts are also rejected; supply explicit aliases for alternate names.
-Reimport is additive and idempotent for identical input. This foundation does not
-implement source refresh/deletion or an automatic conflict-merging policy.
+real schema arrives. Exact duplicate pairs are skipped while existing rows are
+updated by authoritative `pair_id`. A later non-`Unknown` severity, non-`Unknown`
+mechanism or real `definition_id` enriches an earlier partial row; a partial refresh
+does not erase known values. Detail, reference and contextual-alternative rows also
+upsert by their pair-scoped identities. DDInter IDs are authoritative when a later
+row presents a display-name variation; no alias or brand mapping is invented.
+Reimport is idempotent for identical input and supports later enrichment without
+duplicate rows.
 
 CSV files stream row by row with indexed identity lookups and a single transaction,
 avoiding a commit per row. Per-row savepoints prevent partial writes on invalid rows.

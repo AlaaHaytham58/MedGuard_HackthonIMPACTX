@@ -91,7 +91,7 @@ class CatalogTests(unittest.TestCase):
             self.repository.add_interaction(self.a.id, self.a.id)
 
     def test_database_constraints(self):
-        for first, second in ((self.b.id, self.a.id), (self.a.id, self.a.id), (self.a.id, self.b.id), (self.a.id, 9999)):
+        for first, second in ((self.b.id, self.a.id), (self.a.id, self.a.id), (self.a.id, 9999)):
             with self.subTest(pair=(first, second)), self.assertRaises(sqlite3.IntegrityError):
                 self.connection.execute("INSERT INTO ddinter_interactions (drug_a_id, drug_b_id, severity) VALUES (?, ?, 'unknown')", (first, second))
         with self.assertRaises(sqlite3.IntegrityError):
@@ -100,8 +100,9 @@ class CatalogTests(unittest.TestCase):
     def test_conflicting_identifiers_and_aliases(self):
         with self.assertRaises(ValueError):
             self.repository.ensure_drug("Drug A", "MOCK-B")
-        with self.assertRaises(ValueError):
-            self.repository.ensure_drug("Another Name", "MOCK-A")
+        resolved, created = self.repository.ensure_drug("Another Name", "MOCK-A")
+        self.assertEqual(resolved.id, self.a.id)
+        self.assertFalse(created)
         with self.assertRaises(ValueError):
             self.repository.add_alias("Drug A", self.b.id)
         with self.assertRaises(ValueError):

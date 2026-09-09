@@ -6,7 +6,14 @@ from .repository import Repository
 
 # Source labels remain intact. Unrecognized labels have no inferred clinical rank.
 # Reconcile this vocabulary against the delivered dataset before production import.
-SEVERITY_RANK = {"major": 3, "moderate": 2, "minor": 1}
+SEVERITY_RANK = {"Major": 3, "Moderate": 2, "Minor": 1, "Unknown": 0}
+
+
+def severity_rank(value: str | None) -> int | None:
+    if value is None:
+        return None
+    normalized = value.strip().title()
+    return SEVERITY_RANK.get(normalized)
 
 
 def unique_pairs(drug_ids: list[int]) -> list[tuple[int, int]]:
@@ -27,7 +34,7 @@ class InteractionService:
             drug_a=first, drug_b=second,
             status="interaction_found" if interaction else "no_record_found",
             interaction=interaction,
-            severity_rank=SEVERITY_RANK.get(interaction.severity) if interaction else None,
+            severity_rank=severity_rank(interaction.severity) if interaction else None,
         )
 
     def check_names(self, names: list[str]) -> CheckResponse:
@@ -51,8 +58,12 @@ class InteractionService:
                 resolved[drug.id] = drug
 
         pairs = unique_pairs(list(resolved))
-        records = {(item.drug_a_id, item.drug_b_id): item
-                   for item in self.repository.interactions_for(list(resolved))}
+        records = {}
+        for item in self.repository.interactions_for(list(resolved)):
+            key = (item.drug_a_id, item.drug_b_id)
+            current = records.get(key)
+            if current is None or (severity_rank(item.severity) or -1) > (severity_rank(current.severity) or -1):
+                records[key] = item
         found, missing = [], []
         for first, second in pairs:
             interaction = records.get((first, second))
@@ -60,7 +71,7 @@ class InteractionService:
                 drug_a=resolved[first], drug_b=resolved[second],
                 status="interaction_found" if interaction else "no_record_found",
                 interaction=interaction,
-                severity_rank=SEVERITY_RANK.get(interaction.severity) if interaction else None,
+                severity_rank=severity_rank(interaction.severity) if interaction else None,
             )
             (found if interaction else missing).append(result)
         found.sort(key=lambda item: (-(item.severity_rank or 0), item.drug_a.id, item.drug_b.id))

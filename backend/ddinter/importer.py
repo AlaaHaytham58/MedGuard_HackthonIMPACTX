@@ -1,8 +1,4 @@
-"""CSV import foundation. The real scraper schema is still pending.
-
-TODO(schema mapping): supply a manifest mapping actual CSV headers to the domain
-fields below. No CSV filenames, source header names, or medical aliases are assumed.
-"""
+"""Transactional importer for the six DDInter scraper CSV files."""
 
 import argparse
 import csv
@@ -16,6 +12,26 @@ from .repository import Repository, connect, database_path, initialize
 # The only mapping boundary: domain field -> actual CSV header in a JSON manifest.
 # Extend here if the delivered files require a new adapter (e.g. list-valued cells).
 FIELDS = {
+    "interaction_definitions": ({"definition_id", "severity", "mechanism", "description", "source_url", "scraped_at"},
+                                 {"definition_id", "severity", "mechanism", "description", "source_url", "scraped_at"}),
+    "interaction_pairs": ({"pair_id", "definition_id", "ddinter_id_a", "drug_a", "drugbank_id_a",
+                            "ddinter_id_b", "drug_b", "drugbank_id_b", "severity", "mechanism",
+                            "pair_key", "detail_url", "scraped_at"},
+                           {"pair_id", "definition_id", "ddinter_id_a", "drug_a", "drugbank_id_a",
+                            "ddinter_id_b", "drug_b", "drugbank_id_b", "severity", "mechanism",
+                            "pair_key", "detail_url", "scraped_at"}),
+    "pair_details": ({"pair_id", "interaction_text", "management", "references_text", "alternative_a",
+                       "alternative_b", "source_url", "scraped_at"},
+                      {"pair_id", "interaction_text", "management", "references_text", "alternative_a",
+                       "alternative_b", "source_url", "scraped_at"}),
+    "references": ({"pair_id", "reference_number", "reference_text", "source_url", "scraped_at"},
+                    {"pair_id", "reference_number", "reference_text", "source_url", "scraped_at"}),
+    "contextual_alternatives": ({"pair_id", "original_drug_id", "original_drug_name", "side", "atc_code",
+                                  "alternative_drug_id", "alternative_drug_name", "source_url", "scraped_at"},
+                                 {"pair_id", "original_drug_id", "original_drug_name", "side", "atc_code",
+                                  "alternative_drug_id", "alternative_drug_name", "source_url", "scraped_at"}),
+    "failures": ({"url", "stage", "error", "attempts", "last_attempt_at"},
+                  {"url", "stage", "error", "attempts", "last_attempt_at"}),
     "drugs": ({"canonical_name"}, {"canonical_name", "ddinter_id"}),
     "aliases": ({"drug", "alias"}, {"drug", "alias"}),
     "interactions": ({"drug_a", "drug_b"}, {
@@ -25,6 +41,15 @@ FIELDS = {
     "alternatives": ({"original_drug"}, {
         "original_drug", "alternative_drug", "information", "context",
     }),
+}
+
+CONTRACT_FILES = {
+    "interaction_definitions": "interaction_definitions.csv",
+    "interaction_pairs": "interaction_pairs.csv",
+    "pair_details": "pair_details.csv",
+    "contextual_alternatives": "alternatives.csv",
+    "references": "references.csv",
+    "failures": "failures.csv",
 }
 
 
@@ -60,6 +85,10 @@ class ImportReport:
     interactions_created: int = 0
     aliases_imported: int = 0
     alternatives_imported: int = 0
+    definitions_imported: int = 0
+    pair_details_imported: int = 0
+    references_imported: int = 0
+    failures_reported: int = 0
     duplicates_skipped: int = 0
     malformed_rows: int = 0
     committed: bool = False
@@ -89,6 +118,14 @@ def load_manifest(path: Path) -> list[CsvSource]:
     return sources
 
 
+def contract_sources(directory: Path) -> list[CsvSource]:
+    """Build the isolated mapping for the current scraper contract."""
+    return [
+        CsvSource(kind, directory / filename, {field: field for field in FIELDS[kind][0]})
+        for kind, filename in CONTRACT_FILES.items()
+    ]
+
+
 def _drug(repository: Repository, value: str, source: CsvSource, counts: dict) -> int:
     if not value:
         raise ValueError("Empty drug reference")
@@ -102,9 +139,47 @@ def _drug(repository: Repository, value: str, source: CsvSource, counts: dict) -
     return drug.id
 
 
+def _contract_drug(repository: Repository, name: str, ddinter_id: str, drugbank_id: str, counts: dict) -> int:
+    if not name or not ddinter_id:
+        raise ValueError("Contract pair rows require drug name and DDInter ID")
+    drug, created = repository.ensure_drug(name, ddinter_id, drugbank_id or None)
+    counts["drugs_created"] = counts.get("drugs_created", 0) + int(created)
+    return drug.id
+
+
 def _import_row(repository: Repository, source: CsvSource, row: dict[str, str]) -> dict[str, int]:
     counts = {}
-    if source.kind == "drugs":
+    if source.kind == "interaction_definitions":
+        created = repository.add_definition(**row)
+        counts["definitions_imported"] = int(created)
+    elif source.kind == "interaction_pairs":
+        first = _contract_drug(repository, row["drug_a"], row["ddinter_id_a"], row["drugbank_id_a"], counts)
+        second = _contract_drug(repository, row["drug_b"], row["ddinter_id_b"], row["drugbank_id_b"], counts)
+        created = repository.add_contract_interaction(
+            pair_id=int(row["pair_id"]), definition_id=row["definition_id"], first=first,
+            second=second, severity=row["severity"], mechanism=row["mechanism"], pair_key=row["pair_key"],
+            detail_url=row["detail_url"],
+        )
+        counts["interactions_created"] = int(created)
+    elif source.kind == "pair_details":
+        created = repository.add_pair_detail(int(row["pair_id"]), **{key: row[key] for key in row if key != "pair_id"})
+        counts["pair_details_imported"] = int(created)
+    elif source.kind == "references":
+        created = repository.add_reference(int(row["pair_id"]), int(row["reference_number"]), **{key: row[key] for key in row if key not in ("pair_id", "reference_number")})
+        counts["references_imported"] = int(created)
+    elif source.kind == "contextual_alternatives":
+        original = _contract_drug(repository, row["original_drug_name"], row["original_drug_id"], "", counts)
+        alternative = _contract_drug(repository, row["alternative_drug_name"], row["alternative_drug_id"], "", counts)
+        created = repository.add_contextual_alternative(
+            pair_id=int(row["pair_id"]), original_drug_id=original, side=row["side"],
+            atc_code=row["atc_code"], alternative_drug_id=alternative,
+            source_url=row["source_url"], scraped_at=row["scraped_at"],
+        )
+        counts["alternatives_imported"] = int(created)
+    elif source.kind == "failures":
+        counts["failures_reported"] = 1
+        created = True
+    elif source.kind == "drugs":
         _, created = repository.ensure_drug(row["canonical_name"], row.get("ddinter_id"))
         counts["drugs_created"] = int(created)
     elif source.kind == "aliases":
@@ -136,7 +211,10 @@ def import_sources(repository: Repository, sources: list[CsvSource], *, skip_mal
     if connection.in_transaction:
         raise ValueError("Importer requires a connection without pending writes")
     report = ImportReport()
-    order = {kind: index for index, kind in enumerate(FIELDS)}
+    order = {kind: index for index, kind in enumerate((
+        "drugs", "interaction_definitions", "interaction_pairs", "pair_details",
+        "contextual_alternatives", "references", "failures", "aliases", "interactions", "alternatives",
+    ))}
     try:
         with connection:
             # BEGIN is necessary before SAVEPOINT so RELEASE cannot commit a row.
@@ -177,13 +255,15 @@ def import_sources(repository: Repository, sources: list[CsvSource], *, skip_mal
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", required=True, type=Path)
+    inputs = parser.add_mutually_exclusive_group(required=True)
+    inputs.add_argument("--manifest", type=Path, help="Legacy/custom domain-to-header manifest")
+    inputs.add_argument("--input-dir", type=Path, help="Directory containing the six contract CSV files")
     parser.add_argument("--database", type=Path, default=database_path())
     parser.add_argument("--skip-malformed", action="store_true", help="Commit valid rows; report and skip invalid rows")
     args = parser.parse_args()
     connection = None
     try:
-        sources = load_manifest(args.manifest)
+        sources = contract_sources(args.input_dir) if args.input_dir else load_manifest(args.manifest)
         args.database.parent.mkdir(parents=True, exist_ok=True)
         connection = connect(args.database)
         initialize(connection)

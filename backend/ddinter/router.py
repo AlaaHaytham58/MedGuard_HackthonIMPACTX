@@ -66,8 +66,12 @@ def interaction_details(interaction_id: PositiveId, repository: Catalog):
 
 
 @router.get("/drugs/{drug_id}/alternatives", response_model=AlternativesResponse)
-def drug_alternatives(drug_id: PositiveId, repository: Catalog):
+def drug_alternatives(
+    drug_id: PositiveId,
+    repository: Catalog,
+    pair_id: Annotated[int, Query(gt=0)],
+):
     drug = repository.get_drug(drug_id)
     if drug is None:
         raise api_error(404, "DRUG_NOT_FOUND", "Drug record not found")
-    return AlternativesResponse(drug=drug, alternatives=repository.alternatives(drug_id))
+    return AlternativesResponse(drug=drug, alternatives=repository.alternatives(drug_id, pair_id))

@@ -41,8 +41,10 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(search.status_code, 200)
         self.assertEqual(search.json()[0]["id"], self.a.id)
         alternatives = self.client.get(f"/drugs/{self.a.id}/alternatives")
+        self.assertEqual(alternatives.status_code, 422)
+        alternatives = self.client.get(f"/drugs/{self.a.id}/alternatives", params={"pair_id": 1})
         self.assertEqual(alternatives.status_code, 200)
-        self.assertEqual(alternatives.json()["alternatives"][0]["alternative_drug_id"], self.d.id)
+        self.assertEqual(alternatives.json()["alternatives"], [])
 
     def test_malformed_bodies(self):
         for body in ({}, {"drugs": "Drug A"}, {"drugs": []}, {"drugs": ["Drug A"]}, {"drugs": ["Drug A", " "]}, {"drugs": ["Drug A", 123]}, {"drugs": ["Drug A", None]}, {"drugs": ["Drug A"] * 51}, {"drugs": ["x" * 301, "Drug A"]}, {"drugs": ["Drug A", "Drug B"], "extra": True}):
@@ -62,8 +64,8 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(response.json()["status"], status)
             self.assertEqual(response.json()["comparisons"], count)
         self.assertEqual(self.client.get("/interactions/99999").status_code, 404)
-        self.assertEqual(self.client.get("/drugs/99999/alternatives").status_code, 404)
-        self.assertEqual(self.client.get(f"/drugs/{self.d.id}/alternatives").json()["alternatives"], [])
+        self.assertEqual(self.client.get("/drugs/99999/alternatives", params={"pair_id": 1}).status_code, 404)
+        self.assertEqual(self.client.get(f"/drugs/{self.d.id}/alternatives", params={"pair_id": 1}).json()["alternatives"], [])
 
     def test_unavailable_catalog_is_not_no_interaction(self):
         missing = Path(self.temp.name) / "absent.sqlite"

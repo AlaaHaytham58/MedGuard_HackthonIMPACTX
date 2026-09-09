@@ -6,3 +6,6 @@ venv/
 server.log
 response*.json
 db/*.sqlite*
+
+# Generated DDInter application databases
+ddinter_demo*.sqlite

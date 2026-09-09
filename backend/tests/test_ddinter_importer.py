@@ -113,3 +113,43 @@ class ImporterTests(unittest.TestCase):
             self.assertIsNone(Repository(connection).resolve("Orphan"))
         finally:
             connection.close()
+
+    def test_contract_files_preserve_ids_details_references_and_context(self):
+        definitions = self.source(
+            "interaction_definitions",
+            ["definition_id", "severity", "mechanism", "description", "source_url", "scraped_at"],
+            [["def-1", "Major", "Absorption; Metabolism", "Synthetic definition", "def-url", "now"]],
+            {field: field for field in ("definition_id", "severity", "mechanism", "description", "source_url", "scraped_at")},
+        )
+        pairs = self.source(
+            "interaction_pairs",
+            ["pair_id", "definition_id", "ddinter_id_a", "drug_a", "drugbank_id_a", "ddinter_id_b", "drug_b", "drugbank_id_b", "severity", "mechanism", "pair_key", "detail_url", "scraped_at"],
+            [[101, "def-1", "DDInterA", "Drug A", "DB-A", "DDInterB", "Drug B", "DB-B", "Major", "Synergy", "DDInterA|DDInterB", "pair-101", "now"],
+             [102, "def-1", "DDInterA", "Drug A", "DB-A", "DDInterB", "Drug B", "DB-B", "Minor", "Others", "DDInterA|DDInterB", "pair-102", "now"]],
+            {field: field for field in ("pair_id", "definition_id", "ddinter_id_a", "drug_a", "drugbank_id_a", "ddinter_id_b", "drug_b", "drugbank_id_b", "severity", "mechanism", "pair_key", "detail_url", "scraped_at")},
+        )
+        details = self.source(
+            "pair_details",
+            ["pair_id", "interaction_text", "management", "references_text", "alternative_a", "alternative_b", "source_url", "scraped_at"],
+            [[101, "Interaction text", "", "Reference one", "", "", "pair-101", "now"]],
+            {field: field for field in ("pair_id", "interaction_text", "management", "references_text", "alternative_a", "alternative_b", "source_url", "scraped_at")},
+        )
+        references = self.source(
+            "references", ["pair_id", "reference_number", "reference_text", "source_url", "scraped_at"],
+            [[101, 1, "Reference one", "pair-101", "now"]],
+            {field: field for field in ("pair_id", "reference_number", "reference_text", "source_url", "scraped_at")},
+        )
+        alternatives = self.source(
+            "contextual_alternatives",
+            ["pair_id", "original_drug_id", "original_drug_name", "side", "atc_code", "alternative_drug_id", "alternative_drug_name", "source_url", "scraped_at"],
+            [[101, "DDInterA", "Drug A", "A", "N06A", "DDInterC", "Drug C", "pair-101", "now"]],
+            {field: field for field in ("pair_id", "original_drug_id", "original_drug_name", "side", "atc_code", "alternative_drug_id", "alternative_drug_name", "source_url", "scraped_at")},
+        )
+        report = import_sources(self.repository, [references, alternatives, details, pairs, definitions])
+        self.assertEqual(report.interactions_created, 2)
+        self.assertEqual(self.repository.by_ddinter_id("DDInterA").drugbank_id, "DB-A")
+        self.assertEqual(self.repository.find_pair(1, 2).pair_id, 101)
+        self.assertTrue(self.repository.find_pair(1, 2).detail_available)
+        self.assertEqual(len(self.repository.find_pair(1, 2).references), 1)
+        self.assertEqual(self.repository.alternatives(self.repository.by_ddinter_id("DDInterA").id, 101)[0].side, "A")
+        self.assertFalse(self.repository.get_interaction(102).detail_available)

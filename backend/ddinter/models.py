@@ -11,12 +11,20 @@ class Drug(BaseModel):
     id: int
     canonical_name: str
     ddinter_id: str | None = None
+    drugbank_id: str | None = None
 
 
 class DrugAlias(BaseModel):
     id: int
     alias: str
     drug_id: int
+
+
+class InteractionReference(BaseModel):
+    pair_id: int
+    reference_number: int
+    reference_text: str
+    source_url: str
 
 
 class DrugInteraction(BaseModel):
@@ -29,6 +37,13 @@ class DrugInteraction(BaseModel):
     mechanism: str | None = None
     management: str | None = None
     source_reference: str | None = None
+    pair_id: int | None = None
+    definition_id: str | None = None
+    pair_key: str | None = None
+    detail_url: str | None = None
+    interaction_text: str | None = None
+    detail_available: bool = False
+    references: list[InteractionReference] = Field(default_factory=list)
 
 
 class AlternativeDrug(BaseModel):
@@ -37,6 +52,9 @@ class AlternativeDrug(BaseModel):
     alternative_drug_id: int | None = None
     information: str | None = None
     context: str | None = None
+    pair_id: int | None = None
+    side: Literal["A", "B"] | None = None
+    atc_code: str | None = None
 
 
 class MultipleCheckRequest(BaseModel):
