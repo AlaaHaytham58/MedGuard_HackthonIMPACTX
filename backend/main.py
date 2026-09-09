@@ -5,6 +5,7 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from routers.check import router as check_router
 from routers.extract import router as extract_router
 
 app = FastAPI(title="MedGuard Backend (A1 dev server)")
@@ -17,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(extract_router)
+app.include_router(check_router)
 
 
 @app.get("/health")
