@@ -159,7 +159,11 @@ def _frontend_report(normalized: dict, interactions: dict, alternatives: list[di
         "interaction": interaction_text,
         "interactionPairs": [],
         "management": ["Ask a doctor or pharmacist before taking these medicines together."],
+<<<<<<< HEAD
         **detail,
+=======
+        "alternatives": [],
+>>>>>>> 5b7e5895d4348098b21c343711f0ffc509c9b521
         "checkedLabel": "Just now",
         "status": status,
         "unresolved": unresolved,
