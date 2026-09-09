@@ -1,0 +1,715 @@
+pair_id,original_drug_id,original_drug_name,side,atc_code,alternative_drug_id,alternative_drug_name,source_url,scraped_at
+957495,DDInter108,Apixaban,A,N02A,DDInter14,Acetaminophen,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,C01E,DDInter31,Adenosine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,C01E,DDInter55,Alprostadil,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter161,Bacitracin,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter180,Benzalkonium (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter184,Benzocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,G02C,DDInter243,Bromocriptine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter251,Buprenorphine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter258,Butorphanol,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,G02C,DDInter260,Cabergoline,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M02A,DDInter290,Capsaicin (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter345,Cetylpyridinium (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter356,Chlorhexidine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M01A,DDInter371,Chondroitin sulfate,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter426,Cocaine (nasal),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter427,Cocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter429,Codeine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter528,Dextropropoxyphene,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter531,Dezocine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter556,Dihydrocodeine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M02A,DDInter565,Dimethyl sulfoxide,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M01A,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter722,Fentanyl,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M01A,DDInter829,Glucosamine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter890,Hydromorphone,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,C01E,DDInter996,Ivabradine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1150,Meperidine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1166,Methadone,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M01A,DDInter1231,Misoprostol,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1244,Morphine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1245,Morphine (liposomal),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1257,Nalbuphine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1262,Naloxone,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1263,Naltrexone,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1344,Opium,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1366,Oxycodone,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,R02A,DDInter1373,Oxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1421,Pentazocine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M01A; M02A,DDInter1559,Rabeprazole,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,C01E,DDInter1575,Regadenoson,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,G02C,DDInter1606,Ritodrine,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1746,Tapentadol,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,M02A,DDInter1827,Tolazoline,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter108,Apixaban,A,N02A,DDInter1841,Tramadol,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter900,Ibuprofen,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter900,Ibuprofen,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957495,DDInter900,Ibuprofen,B,B01A,DDInter1656,Selexipag,https://ddinter.scbdd.com/ddinter/interact/957495/,2026-09-09T16:49:23+00:00
+957584,DDInter672,Escitalopram,A,N02A,DDInter14,Acetaminophen,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,C01E,DDInter55,Alprostadil,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter161,Bacitracin,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter180,Benzalkonium (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter184,Benzocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,G02C,DDInter260,Cabergoline,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M02A,DDInter290,Capsaicin (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter336,Celecoxib,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter345,Cetylpyridinium (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter356,Chlorhexidine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter371,Chondroitin sulfate,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter426,Cocaine (nasal),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter427,Cocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A; M02A,DDInter538,Diclofenac (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A; M02A,DDInter539,Diclofenac (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M02A,DDInter565,Dimethyl sulfoxide,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A; M02A; R02A,DDInter764,Flurbiprofen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter829,Glucosamine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter1011,Ketorolac (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter1231,Misoprostol,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,N02A,DDInter1262,Naloxone,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,N02A,DDInter1263,Naltrexone,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,R02A,DDInter1373,Oxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A; M02A,DDInter1559,Rabeprazole,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,C01E,DDInter1575,Regadenoson,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter1613,Rofecoxib,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter1732,Suprofen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M02A,DDInter1827,Tolazoline,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter672,Escitalopram,A,M01A,DDInter1910,Valdecoxib,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter82,Amoxapine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter504,Desipramine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter594,Doxepin (topical),https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter673,Esketamine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter981,Isocarboxazid,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1124,Maprotiline,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1362,Oxitriptan,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1440,Phenelzine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1543,Protriptyline,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1708,St. John's Wort,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1845,Tranylcypromine,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957584,DDInter900,Ibuprofen,B,N06A,DDInter1888,Tryptophan,https://ddinter.scbdd.com/ddinter/interact/957584/,2026-09-09T16:51:40+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter14,Acetaminophen,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,C01E,DDInter55,Alprostadil,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter161,Bacitracin,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter180,Benzalkonium (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter184,Benzocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,G02C,DDInter243,Bromocriptine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter258,Butorphanol,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,G02C,DDInter260,Cabergoline,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M02A,DDInter290,Capsaicin (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter345,Cetylpyridinium (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter356,Chlorhexidine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A,DDInter371,Chondroitin sulfate,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter426,Cocaine (nasal),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter427,Cocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter429,Codeine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter531,Dezocine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A; M02A,DDInter538,Diclofenac (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A; M02A,DDInter539,Diclofenac (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter556,Dihydrocodeine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M02A,DDInter565,Dimethyl sulfoxide,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter722,Fentanyl,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,G02C,DDInter741,Flibanserin,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A; M02A; R02A,DDInter764,Flurbiprofen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A,DDInter829,Glucosamine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter890,Hydromorphone,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A,DDInter1011,Ketorolac (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1150,Meperidine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A,DDInter1231,Misoprostol,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1244,Morphine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1245,Morphine (liposomal),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1257,Nalbuphine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1262,Naloxone,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1344,Opium,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1366,Oxycodone,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,R02A,DDInter1373,Oxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1421,Pentazocine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A; M02A,DDInter1559,Rabeprazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,C01E,DDInter1575,Regadenoson,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M01A,DDInter1732,Suprofen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,N02A,DDInter1746,Tapentadol,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter1055,Levofloxacin,A,M02A,DDInter1827,Tolazoline,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter26,Acyclovir (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter189,Benzylpenicillin,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter190,Benzylpenicillin (potassium),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter191,Benzylpenicillin (sodium),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter352,Chloramphenicol (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter353,Chloramphenicol (otic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,A02B,DDInter519,Dexlansoprazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,A02B,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter774,Fomivirsen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter806,Ganciclovir,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter816,Gentamicin (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,A02B; J01R,DDInter1203,Metronidazole (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1374,Oxytetracycline,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1489,Polymyxin B,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1583,Resorcinol (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1591,Rifamycin,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,J01R,DDInter1649,Secnidazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1720,Sulfacetamide (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1723,Sulfamethizole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1727,Sulfisoxazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,A02B; J01R; S01A,DDInter1784,Tetracycline (topical),https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,A02B; J01R,DDInter1811,Tinidazole,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957651,DDInter900,Ibuprofen,B,S01A,DDInter1868,Trifluridine,https://ddinter.scbdd.com/ddinter/interact/957651/,2026-09-09T16:51:10+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter14,Acetaminophen,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,C01E,DDInter31,Adenosine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,C01E,DDInter55,Alprostadil,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter161,Bacitracin,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter180,Benzalkonium (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter184,Benzocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,G02C,DDInter243,Bromocriptine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter251,Buprenorphine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter258,Butorphanol,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,G02C,DDInter260,Cabergoline,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M02A,DDInter290,Capsaicin (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter345,Cetylpyridinium (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter356,Chlorhexidine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M01A,DDInter371,Chondroitin sulfate,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter426,Cocaine (nasal),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter427,Cocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter429,Codeine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter528,Dextropropoxyphene,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter531,Dezocine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter556,Dihydrocodeine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M02A,DDInter565,Dimethyl sulfoxide,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M01A,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter722,Fentanyl,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M01A,DDInter829,Glucosamine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter890,Hydromorphone,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,C01E,DDInter996,Ivabradine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1150,Meperidine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1166,Methadone,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M01A,DDInter1231,Misoprostol,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1244,Morphine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1245,Morphine (liposomal),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1257,Nalbuphine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1262,Naloxone,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1263,Naltrexone,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1344,Opium,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1366,Oxycodone,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,R02A,DDInter1373,Oxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1421,Pentazocine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M01A; M02A,DDInter1559,Rabeprazole,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,C01E,DDInter1575,Regadenoson,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,G02C,DDInter1606,Ritodrine,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1746,Tapentadol,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,M02A,DDInter1827,Tolazoline,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter1609,Rivaroxaban,A,N02A,DDInter1841,Tramadol,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter900,Ibuprofen,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter900,Ibuprofen,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957748,DDInter900,Ibuprofen,B,B01A,DDInter1656,Selexipag,https://ddinter.scbdd.com/ddinter/interact/957748/,2026-09-09T16:51:55+00:00
+957772,DDInter1802,Ticagrelor,A,N02A,DDInter14,Acetaminophen,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,C01E,DDInter55,Alprostadil,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter161,Bacitracin,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter180,Benzalkonium (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter184,Benzocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,G02C,DDInter243,Bromocriptine,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,G02C,DDInter260,Cabergoline,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M02A,DDInter290,Capsaicin (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter345,Cetylpyridinium (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter356,Chlorhexidine,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M01A,DDInter371,Chondroitin sulfate,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter426,Cocaine (nasal),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter427,Cocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M02A,DDInter565,Dimethyl sulfoxide,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M01A,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M01A,DDInter829,Glucosamine,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M01A,DDInter1231,Misoprostol,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,N02A,DDInter1245,Morphine (liposomal),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,N02A,DDInter1262,Naloxone,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,N02A,DDInter1263,Naltrexone,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,R02A,DDInter1373,Oxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M01A; M02A,DDInter1559,Rabeprazole,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,C01E,DDInter1575,Regadenoson,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,G02C,DDInter1606,Ritodrine,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter1802,Ticagrelor,A,M02A,DDInter1827,Tolazoline,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter900,Ibuprofen,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter900,Ibuprofen,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+957772,DDInter900,Ibuprofen,B,B01A,DDInter1656,Selexipag,https://ddinter.scbdd.com/ddinter/interact/957772/,2026-09-09T16:52:05+00:00
+964414,DDInter672,Escitalopram,A,C09D; C09X,DDInter46,Aliskiren,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B; C09D; C09X,DDInter79,Amlodipine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter85,Amphotericin B,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter86,Amphotericin B (cholesteryl sulfate),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter87,Amphotericin B (lipid complex),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter88,Amphotericin B (liposomal),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter124,Ascorbic acid,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter156,Azilsartan medoxomil,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter177,Benazepril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter216,Bisoprolol,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter223,Bosentan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter237,Brinzolamide,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter238,Brinzolamide (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter292,Captopril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter336,Celecoxib,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter352,Chloramphenicol (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter353,Chloramphenicol (otic),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter377,Ciclopirox,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter398,Clindamycin,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter399,Clindamycin (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter400,Clioquinol (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter535,Diazoxide,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter559,Diiodohydroxyquinoline,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter560,Diiodohydroxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter588,Dorzolamide (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter616,Econazole,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter617,Econazole (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter638,Enalapril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter658,Eprosartan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter716,Felodipine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter781,Fosinopril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter972,Irbesartan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1015,Lactic acid,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter1079,Lisinopril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter1095,Losartan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1203,Metronidazole (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1210,Miconazole (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter1237,Moexipril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter1271,Nebivolol,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1318,Nystatin,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter1330,Olmesartan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1373,Oxyquinoline (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1374,Oxytetracycline,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter1431,Perindopril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1522,Probenecid,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter1554,Quinapril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter1565,Ramipril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1622,Rosuvastatin,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter1630,Sacubitril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1666,Sildenafil,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1672,Silver sulfadiazine (topical),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1673,Simeprevir,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1720,Sulfacetamide (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1721,Sulfadiazine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1722,Sulfadoxine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1723,Sulfamethizole,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1725,Sulfasalazine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1727,Sulfisoxazole,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1745,Tamsulosin,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter1759,Telmisartan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1811,Tinidazole,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,G01A,DDInter1813,Tioconazole,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09B,DDInter1843,Trandolapril,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter672,Escitalopram,A,C09D,DDInter1915,Valsartan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter883,Hydrochlorothiazide,B,N06A,DDInter504,Desipramine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter883,Hydrochlorothiazide,B,N06A,DDInter673,Esketamine,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter883,Hydrochlorothiazide,B,N06A,DDInter1362,Oxitriptan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter883,Hydrochlorothiazide,B,N06A,DDInter1543,Protriptyline,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter883,Hydrochlorothiazide,B,N06A,DDInter1708,St. John's Wort,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+964414,DDInter883,Hydrochlorothiazide,B,N06A,DDInter1888,Tryptophan,https://ddinter.scbdd.com/ddinter/interact/964414/,2026-09-09T16:54:31+00:00
+965438,DDInter1055,Levofloxacin,A,A10B,DDInter1622,Rosuvastatin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1055,Levofloxacin,A,A10B,DDInter1675,Simvastatin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter26,Acyclovir (topical),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,J01R; S01A,DDInter66,Amikacin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,J01R; S01A,DDInter67,Amikacin (liposome),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter89,Ampicillin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter189,Benzylpenicillin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter190,Benzylpenicillin (potassium),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter191,Benzylpenicillin (sodium),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter351,Chloramphenicol,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter352,Chloramphenicol (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter353,Chloramphenicol (otic),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,A02B,DDInter519,Dexlansoprazole,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,A02B,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter774,Fomivirsen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter806,Ganciclovir,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter815,Gentamicin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter816,Gentamicin (topical),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1004,Kanamycin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,A02B; J01R,DDInter1203,Metronidazole (topical),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1283,Netilmicin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1374,Oxytetracycline,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1489,Polymyxin B,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1583,Resorcinol (topical),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1591,Rifamycin,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,J01R,DDInter1649,Secnidazole,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1720,Sulfacetamide (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1723,Sulfamethizole,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1727,Sulfisoxazole,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,A02B; J01R; S01A,DDInter1784,Tetracycline (topical),https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,A02B; J01R,DDInter1811,Tinidazole,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+965438,DDInter1164,Metformin,B,S01A,DDInter1868,Trifluridine,https://ddinter.scbdd.com/ddinter/interact/965438/,2026-09-09T16:54:42+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter575,Disopyramide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter580,Dofetilide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter740,Flecainide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter901,Ibutilide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1524,Procainamide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter108,Apixaban,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter6,Abciximab,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter56,Alteplase,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter99,Anistreplase,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter105,Antithrombin III human,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter117,Argatroban,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter217,Bivalirudin,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter283,Cangrelor,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter286,Caplacizumab,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter470,Dalteparin,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter471,Danaparoid,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter491,Defibrotide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter505,Desirudin,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter573,Dipyridamole,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter605,Drotrecogin alfa,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter645,Enoxaparin,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter659,Eptifibatide,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter775,Fondaparinux,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter908,Iloprost,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1037,Lepirudin,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1508,Prasugrel,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1585,Reteplase,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1656,Selexipag,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1712,Streptokinase,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1764,Tenecteplase,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1804,Ticlopidine,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1812,Tinzaparin,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1818,Tirofiban,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1852,Treprostinil,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1905,Urokinase,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968669,DDInter76,Amiodarone,B,B01A,DDInter1945,Vorapaxar,https://ddinter.scbdd.com/ddinter/interact/968669/,2026-09-09T16:54:45+00:00
+968674,DDInter118,Aripiprazole,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter118,Aripiprazole,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter118,Aripiprazole,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter118,Aripiprazole,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter118,Aripiprazole,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter118,Aripiprazole,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter76,Amiodarone,B,N05A,DDInter231,Brexpiprazole,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter76,Amiodarone,B,N05A,DDInter1099,Loxapine,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter76,Amiodarone,B,N05A,DDInter1239,Molindone,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968674,DDInter76,Amiodarone,B,N05A,DDInter1798,Thiothixene,https://ddinter.scbdd.com/ddinter/interact/968674/,2026-09-09T16:54:57+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter672,Escitalopram,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter511,Desvenlafaxine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter673,Esketamine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter981,Isocarboxazid,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter1220,Milnacipran,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter1362,Oxitriptan,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter1440,Phenelzine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter1845,Tranylcypromine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter1888,Tryptophan,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968831,DDInter76,Amiodarone,B,N06A,DDInter1948,Vortioxetine,https://ddinter.scbdd.com/ddinter/interact/968831/,2026-09-09T16:57:42+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter901,Ibutilide,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter1524,Procainamide,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter76,Amiodarone,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter995,Itraconazole,B,J02A,DDInter97,Anidulafungin,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter995,Itraconazole,B,J02A,DDInter306,Caspofungin,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter995,Itraconazole,B,J02A,DDInter744,Flucytosine,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter995,Itraconazole,B,J02A,DDInter1208,Micafungin,https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968916,DDInter995,Itraconazole,B,J02A,DDInter1210,Miconazole (topical),https://ddinter.scbdd.com/ddinter/interact/968916/,2026-09-09T16:56:10+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter1055,Levofloxacin,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter26,Acyclovir (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,J01R; S01A,DDInter67,Amikacin (liposome),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter89,Ampicillin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter189,Benzylpenicillin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter190,Benzylpenicillin (potassium),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter191,Benzylpenicillin (sodium),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter352,Chloramphenicol (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter353,Chloramphenicol (otic),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter356,Chlorhexidine,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,J01M,DDInter383,Cinoxacin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,J01M,DDInter495,Delafloxacin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B,DDInter519,Dexlansoprazole,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,J01M,DDInter644,Enoxacin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B,DDInter676,Esomeprazole,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter711,Famciclovir,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter774,Fomivirsen (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter806,Ganciclovir,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter816,Gentamicin (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1004,Kanamycin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B; J01R,DDInter1203,Metronidazole (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B,DDInter1231,Misoprostol,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,J01M,DDInter1259,Nalidixic acid,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1277,Neomycin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1278,Neomycin (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1283,Netilmicin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B,DDInter1309,Nizatidine,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1374,Oxytetracycline,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1489,Polymyxin B,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B,DDInter1569,Ranitidine (bismuth citrate),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1583,Resorcinol (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1591,Rifamycin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1720,Sulfacetamide (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1723,Sulfamethizole,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1727,Sulfisoxazole,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B; J01R; S01A,DDInter1783,Tetracycline,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,A02B; J01R; S01A,DDInter1784,Tetracycline (topical),https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1822,Tobramycin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,S01A,DDInter1868,Trifluridine,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+968943,DDInter76,Amiodarone,B,J01M,DDInter1887,Trovafloxacin,https://ddinter.scbdd.com/ddinter/interact/968943/,2026-09-09T16:58:32+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1,Abacavir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter26,Acyclovir (topical),https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter30,Adefovir dipivoxil,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter163,Baloxavir marboxil,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter378,Cidofovir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter464,Daclatasvir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter483,Dasabuvir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter626,Elbasvir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter633,Elvitegravir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter637,Emtricitabine,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter643,Enfuvirtide,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter647,Entecavir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter711,Famciclovir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter806,Ganciclovir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter824,Glecaprevir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1019,Lamivudine,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1031,Ledipasvir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1089,Lopinavir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1338,Ombitasvir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1350,Oseltamivir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1395,Paritaprevir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1418,Penciclovir (topical),https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1563,Raltegravir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1587,Ribavirin,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1597,Rimantadine,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1817,Tipranavir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1908,Valaciclovir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1912,Valganciclovir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1924,Velpatasvir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1950,Voxilaprevir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1958,Zanamivir,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter1607,Ritonavir,A,J05A,DDInter1961,Zidovudine,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter901,Ibutilide,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter1524,Procainamide,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969117,DDInter76,Amiodarone,B,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/969117/,2026-09-09T16:56:58+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter575,Disopyramide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter580,Dofetilide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter740,Flecainide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter901,Ibutilide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1524,Procainamide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1534,Propafenone,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter1609,Rivaroxaban,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter6,Abciximab,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter56,Alteplase,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter99,Anistreplase,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter105,Antithrombin III human,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter117,Argatroban,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter217,Bivalirudin,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter283,Cangrelor,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter286,Caplacizumab,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter470,Dalteparin,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter471,Danaparoid,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter491,Defibrotide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter505,Desirudin,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter573,Dipyridamole,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter605,Drotrecogin alfa,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter645,Enoxaparin,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter659,Eptifibatide,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter775,Fondaparinux,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter908,Iloprost,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1037,Lepirudin,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1508,Prasugrel,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1585,Reteplase,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1656,Selexipag,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1712,Streptokinase,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1764,Tenecteplase,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1804,Ticlopidine,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1812,Tinzaparin,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1818,Tirofiban,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1852,Treprostinil,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1905,Urokinase,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969118,DDInter76,Amiodarone,B,B01A,DDInter1945,Vorapaxar,https://ddinter.scbdd.com/ddinter/interact/969118/,2026-09-09T16:57:49+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter229,Bretylium,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter575,Disopyramide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter740,Flecainide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter901,Ibutilide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1066,Lidocaine,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1067,Lidocaine (ophthalmic),https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1068,Lidocaine (topical),https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1206,Mexiletine,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1243,Moricizine,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1524,Procainamide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1534,Propafenone,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter1802,Ticagrelor,A,C01B,DDInter1823,Tocainide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter6,Abciximab,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter56,Alteplase,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter99,Anistreplase,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter105,Antithrombin III human,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter117,Argatroban,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter217,Bivalirudin,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter283,Cangrelor,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter286,Caplacizumab,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter470,Dalteparin,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter471,Danaparoid,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter491,Defibrotide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter505,Desirudin,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter573,Dipyridamole,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter605,Drotrecogin alfa,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter645,Enoxaparin,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter659,Eptifibatide,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter775,Fondaparinux,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter908,Iloprost,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1037,Lepirudin,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1508,Prasugrel,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1585,Reteplase,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1656,Selexipag,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1712,Streptokinase,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1764,Tenecteplase,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1804,Ticlopidine,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1812,Tinzaparin,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1818,Tirofiban,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1852,Treprostinil,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1905,Urokinase,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+969191,DDInter76,Amiodarone,B,B01A,DDInter1945,Vorapaxar,https://ddinter.scbdd.com/ddinter/interact/969191/,2026-09-09T16:58:21+00:00
+970152,DDInter108,Apixaban,A,C09X; C09D,DDInter46,Aliskiren,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F,DDInter130,Atenolol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter133,Atorvastatin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter156,Azilsartan medoxomil,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter177,Benazepril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B; C07F,DDInter216,Bisoprolol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter292,Captopril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F,DDInter305,Carvedilol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C08C,DDInter396,Clevidipine,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter638,Enalapril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter658,Eprosartan,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter707,Ezetimibe,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter718,Fenofibrate,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter781,Fosinopril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09X; C09B; C09D,DDInter883,Hydrochlorothiazide,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B; C09B,DDInter916,Indapamide,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter972,Irbesartan,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C08C,DDInter993,Isradipine,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F,DDInter996,Ivabradine,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B; C09B,DDInter1079,Lisinopril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter1095,Losartan,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter1098,Lovastatin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F,DDInter1200,Metoprolol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter1237,Moexipril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F; C09D,DDInter1271,Nebivolol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter1286,Niacin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C08C,DDInter1287,Nicardipine,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C08C,DDInter1295,Nimodipine,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C08C,DDInter1298,Nisoldipine,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter1330,Olmesartan,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B; C09B,DDInter1431,Perindopril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter1509,Pravastatin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F,DDInter1539,Propranolol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter1554,Quinapril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B; C09B,DDInter1565,Ramipril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter1622,Rosuvastatin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter1630,Sacubitril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B,DDInter1675,Simvastatin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C07F,DDInter1704,Sotalol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09D,DDInter1759,Telmisartan,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C09B,DDInter1843,Trandolapril,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter108,Apixaban,A,C10B; C09D,DDInter1915,Valsartan,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter6,Abciximab,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter56,Alteplase,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter99,Anistreplase,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter105,Antithrombin III human,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter117,Argatroban,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter200,Betrixaban,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter217,Bivalirudin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter283,Cangrelor,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter286,Caplacizumab,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter470,Dalteparin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter471,Danaparoid,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter491,Defibrotide,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter505,Desirudin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter542,Dicoumarol,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter605,Drotrecogin alfa,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter621,Edoxaban,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter645,Enoxaparin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter659,Eptifibatide,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter775,Fondaparinux,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter857,Heparin (flush),https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1037,Lepirudin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1508,Prasugrel,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1542,Protein C,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1585,Reteplase,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1609,Rivaroxaban,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1712,Streptokinase,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1764,Tenecteplase,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1812,Tinzaparin,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1818,Tirofiban,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1905,Urokinase,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970152,DDInter79,Amlodipine,B,B01A,DDInter1945,Vorapaxar,https://ddinter.scbdd.com/ddinter/interact/970152/,2026-09-09T16:58:28+00:00
+970236,DDInter474,Dapagliflozin,A,C10B; C07F,DDInter20,Acetylsalicylic acid,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C10B,DDInter133,Atorvastatin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C08C,DDInter336,Celecoxib,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C10B,DDInter707,Ezetimibe,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C10B,DDInter718,Fenofibrate,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C07F,DDInter996,Ivabradine,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C10B,DDInter1098,Lovastatin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C10B,DDInter1509,Pravastatin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C10B,DDInter1622,Rosuvastatin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter474,Dapagliflozin,A,C09D,DDInter1630,Sacubitril,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter16,Acetohexamide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter36,Albiglutide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter51,Alogliptin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter364,Chlorpropamide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter607,Dulaglutide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter706,Exenatide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1070,Linagliptin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1077,Liraglutide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1082,Lixisenatide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1217,Miglitol,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1506,Pramlintide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1646,Saxagliptin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1660,Semaglutide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1679,Sitagliptin,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1826,Tolazamide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
+970236,DDInter79,Amlodipine,B,A10B,DDInter1828,Tolbutamide,https://ddinter.scbdd.com/ddinter/interact/970236/,2026-09-09T16:58:57+00:00
