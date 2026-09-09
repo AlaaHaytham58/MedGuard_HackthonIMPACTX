@@ -53,7 +53,7 @@ def _alternatives_for(medications: list[dict], items: list[dict]) -> list[dict]:
     return groups
 
 
-def _frontend_report(normalized: dict, interactions: dict, alternatives: list[dict]) -> dict:
+def _frontend_report(normalized: dict, interactions: dict, alternatives: list[dict], mocked: bool = False) -> dict:
     medications = normalized.get("medications", [])
     raw_interactions = interactions.get("interactions", [])
     unresolved = normalized.get("unresolved", [])
@@ -63,6 +63,7 @@ def _frontend_report(normalized: dict, interactions: dict, alternatives: list[di
     # substitutes, and the pairs the catalog had no record for — absence of a
     # record is a real finding and has to be shown, not silently dropped.
     detail = {
+        "mocked": mocked,
         "alternatives": alternatives,
         "duplicates": interactions.get("duplicate_active_ingredients", []),
         "noRecordPairs": interactions.get("no_record_pairs", []),
@@ -218,4 +219,4 @@ async def pipeline(images: list[UploadFile] = File(...)) -> dict:
             },
         ) from exc
 
-    return _frontend_report(normalized, interactions, alternatives)
+    return _frontend_report(normalized, interactions, alternatives, bool(extracted.get("mocked")))

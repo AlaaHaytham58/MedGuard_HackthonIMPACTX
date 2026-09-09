@@ -59,6 +59,11 @@ _MOCK_RESPONSE = {
         },
     ],
     "image_quality_warnings": [],
+    # Marks output that was never read from the uploaded photos. Without this the
+    # mock returns real, plausible drug names with nothing to distinguish them
+    # from a genuine reading — which reads as the app confidently misidentifying
+    # someone's medication.
+    "mocked": True,
 }
 
 

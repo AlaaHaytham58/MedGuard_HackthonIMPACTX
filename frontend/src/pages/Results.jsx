@@ -58,6 +58,22 @@ export default function Results() {
       <TopNav />
 
       <main className="results">
+        {report.mocked && (
+          <div className="mock-banner" role="alert">
+            <div className="shell">
+              <AlertIcon width={26} height={26} />
+              <div>
+                <p className="mock-banner__title">Demo data — your photos were not read</p>
+                <p className="mock-banner__body">
+                  The server is running with <code>MOCK_EXTRACT=1</code>, so the medicines
+                  below are a fixed sample, not what is on your boxes. Turn mock extraction
+                  off to check real photos.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ---------- Verdict ---------- */}
         <section className={`verdict verdict--${report.verdict}`}>
           <div className="shell">

@@ -25,6 +25,55 @@
   margin: 0 auto 28px;
 }
 
+/* ---------- Mock-data banner ---------- */
+
+/* Deliberately loud: the mock returns real, plausible drug names, so anything
+   subtle here reads as the app confidently misidentifying someone's medicine. */
+.mock-banner {
+  background: repeating-linear-gradient(
+    135deg,
+    #3a2a00,
+    #3a2a00 14px,
+    #4a3600 14px,
+    #4a3600 28px
+  );
+  color: #ffe9a8;
+  padding: 18px 0;
+}
+
+.mock-banner .shell {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mock-banner svg {
+  color: #ffc83d;
+  flex-shrink: 0;
+}
+
+.mock-banner__title {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #ffc83d;
+  margin-bottom: 4px;
+}
+
+.mock-banner__body {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  max-width: 70ch;
+}
+
+.mock-banner code {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.86em;
+}
+
 /* ---------- Verdict band ---------- */
 
 .verdict {

@@ -125,7 +125,7 @@ function deriveVerdict({ interactions, duplicates, status, catalogWarning }) {
   return VERDICT.NO_RECORD;
 }
 
-function assemble({ id, source, medications, unresolved, check, duplicates, alternatives, imageWarnings }) {
+function assemble({ id, source, medications, unresolved, check, duplicates, alternatives, imageWarnings, mocked }) {
   const names = displayNames(check.resolutions);
   const interactions = (check.interactions ?? []).map((pair) => mapPair(pair, names));
   const mappedDuplicates = (duplicates ?? []).map(mapDuplicate);
@@ -156,6 +156,7 @@ function assemble({ id, source, medications, unresolved, check, duplicates, alte
     notice: check.notice ?? null,
     catalogWarning,
     imageWarnings: imageWarnings ?? [],
+    mocked: Boolean(mocked),
   };
 }
 
@@ -203,6 +204,7 @@ export function reportFromPipeline(data) {
     duplicates: data.duplicates ?? data.interactions?.duplicate_active_ingredients,
     alternatives: data.alternatives,
     imageWarnings: data.extracted?.image_quality_warnings ?? [],
+    mocked: data.mocked ?? data.extracted?.mocked,
   });
 }
 
