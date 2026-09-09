@@ -1,0 +1,171 @@
+:root {
+  color-scheme: light;
+
+  /* Structural navy — brand, chrome, headings, primary actions */
+  --navy-950: #071527;
+  --navy-900: #0b2340;
+  --navy-800: #123055;
+  --navy-700: #1c4270;
+  --navy-600: #2a5490;
+  --navy-500: #3d6bad;
+  --navy-200: #b9cde3;
+  --navy-100: #dbe6f4;
+  --navy-50: #eef3fa;
+
+  /* Neutral ground */
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-sunken: #eef2f7;
+  --border: #d7e0ea;
+  --border-strong: #b9c8d9;
+
+  /* Text — tinted from navy, never gray */
+  --ink: #0d1e33;
+  --ink-muted: #4c6079;
+  --ink-faint: #5b7089;
+  --ink-on-navy: #f4f8fc;
+  --ink-on-navy-muted: #a9c0da;
+
+  /* Verdict — the only two colors that carry meaning, Results only */
+  --green-800: #146c43;
+  --green-700: #1a8452;
+  --green-100: #e1f5e9;
+  --green-ink: #0e3d28;
+  --green-border: #a9dcbf;
+
+  --red-800: #a3271f;
+  --red-700: #c33a2f;
+  --red-100: #fbe8e6;
+  --red-ink: #5c1712;
+  --red-border: #eab3ac;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  --shadow-card: 0 1px 2px rgba(11, 35, 64, 0.06), 0 8px 24px -12px rgba(11, 35, 64, 0.18);
+
+  --font-body: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--navy-900);
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--navy-700);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Selection, caret, and scrollbars carry the palette, not the browser default */
+::selection {
+  background: var(--navy-200);
+  color: var(--navy-950);
+}
+
+input,
+textarea {
+  caret-color: var(--navy-600);
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--navy-200);
+  border-radius: 999px;
+  border: 3px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--navy-500);
+}
+
+* {
+  scrollbar-color: var(--navy-200) var(--bg);
+  scrollbar-width: thin;
+}
+
+/* One visible, deliberate focus ring everywhere */
+:focus-visible {
+  outline: 3px solid var(--navy-600);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
