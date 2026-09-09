@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-09T17:57:39Z",
+  "title": "Design System: MedGuard",
+  "extensions": {
+    "colorMeta": {
+      "navy-900": {
+        "role": "primary",
+        "displayName": "Structural Navy",
+        "canonical": "#0b2340",
+        "tonalRamp": ["#071527", "#0b2340", "#123055", "#1c4270", "#2a5490", "#3d6bad", "#b9cde3", "#dbe6f4", "#eef3fa"]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Cool-Neutral Ground",
+        "canonical": "#f4f7fb",
+        "tonalRamp": ["#0d1e33", "#4c6079", "#5b7089", "#d7e0ea", "#b9c8d9", "#eef2f7", "#ffffff", "#f4f7fb"]
+      },
+      "green-700": {
+        "role": "tertiary",
+        "displayName": "Verdict Green",
+        "canonical": "#1a8452",
+        "tonalRamp": ["#0e3d28", "#146c43", "#1a8452", "#a9dcbf", "#e1f5e9"]
+      },
+      "red-700": {
+        "role": "tertiary",
+        "displayName": "Verdict Red",
+        "canonical": "#c33a2f",
+        "tonalRamp": ["#5c1712", "#a3271f", "#c33a2f", "#eab3ac", "#fbe8e6"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Home page h1 and top-of-page headings only." },
+      "title": { "displayName": "Title", "purpose": "Panel/section headings (panel__heading, dropzone__title)." },
+      "body": { "displayName": "Body", "purpose": "Lede, disclaimer, report prose; base 17px/1.55." },
+      "label": { "displayName": "Label", "purpose": "Field labels, chip meta, ingredient names, the 'or' divider (uppercase, only use of letter-spacing)." }
+    },
+    "shadows": [
+      { "name": "card", "value": "0 1px 2px rgba(11, 35, 64, 0.06), 0 8px 24px -12px rgba(11, 35, 64, 0.18)", "purpose": "The single elevation token; applied to every .panel. Nothing else in the system uses a shadow." }
+    ],
+    "motion": [
+      { "name": "state-transition", "value": "background 0.15s ease, border-color 0.15s ease, color 0.15s ease", "purpose": "Default hover/focus transition on buttons, links, dropzone, history items." },
+      { "name": "press", "value": "transform 0.08s ease (translateY(1px) on :active)", "purpose": "Tactile press feedback on .btn." },
+      { "name": "spin", "value": "spin 0.9s linear infinite", "purpose": "Loading spinner during the simulated submit delay; respects prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "480px" },
+      { "name": "md", "value": "520px" },
+      { "name": "lg", "value": "720px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single committing action per form (e.g. Check interactions).",
+      "html": "<button class=\"ds-btn-primary\">Check interactions</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 0.98rem; padding: 13px 22px; border-radius: 999px; border: 1.5px solid transparent; background: #0b2340; color: #f4f8fc; cursor: pointer; transition: background 0.15s ease, transform 0.08s ease; } .ds-btn-primary:hover { background: #123055; } .ds-btn-primary:focus-visible { outline: 3px solid #2a5490; outline-offset: 2px; border-radius: 6px; } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Secondary / Ghost / Outline Buttons",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Lower-commitment actions ranked below the primary action (Choose photo, Take a photo, search submit).",
+      "html": "<div style=\"display:flex;gap:12px;flex-wrap:wrap\"><button class=\"ds-btn-secondary\">Choose photo</button><button class=\"ds-btn-ghost\">Take a photo</button><button class=\"ds-btn-outline\">Search</button></div>",
+      "css": ".ds-btn-secondary, .ds-btn-ghost, .ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 0.98rem; padding: 13px 22px; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; } .ds-btn-secondary { background: #eef3fa; color: #0b2340; border-color: #dbe6f4; } .ds-btn-secondary:hover { background: #dbe6f4; } .ds-btn-ghost { background: transparent; color: #1c4270; border-color: #b9c8d9; } .ds-btn-ghost:hover { background: #eef3fa; } .ds-btn-outline { background: #ffffff; color: #0b2340; border-color: #123055; } .ds-btn-outline:hover { background: #eef3fa; } .ds-btn-secondary:focus-visible, .ds-btn-ghost:focus-visible, .ds-btn-outline:focus-visible { outline: 3px solid #2a5490; outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "search-form__field",
+      "description": "Pill-shaped text field with a leading icon; error state via border weight, never color.",
+      "html": "<div class=\"ds-field\"><svg class=\"ds-field-icon\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m20 20-4.3-4.3\"/></svg><input type=\"text\" placeholder=\"e.g. Panadol Extra\" /></div>",
+      "css": ".ds-field { position: relative; display: flex; align-items: center; } .ds-field-icon { position: absolute; left: 16px; color: #5b7089; pointer-events: none; } .ds-field input { width: 100%; padding: 13px 16px 13px 46px; border-radius: 999px; border: 1.5px solid #b9c8d9; font-size: 1rem; color: #0d1e33; background: #ffffff; } .ds-field input::placeholder { color: #5b7089; } .ds-field input[aria-invalid='true'] { border-color: #0b2340; border-width: 2px; padding-left: 45px; } .ds-field input:focus-visible { outline: 3px solid #2a5490; outline-offset: 3px; }"
+    },
+    {
+      "name": "Verdict Banner",
+      "kind": "custom",
+      "refersTo": "verdict",
+      "description": "The single saturated-color moment in the product: full-width danger/safe verdict stamp on Results, immediately below the drug-name pills.",
+      "html": "<div class=\"ds-verdict ds-verdict--safe\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"13\" cy=\"13\" r=\"10.2\"/><path d=\"m8.5 13.3 3 3 6-6.2\"/></svg><div><div class=\"ds-verdict-headline\">No dangerous interaction found</div><div class=\"ds-verdict-meta\">Checked just now</div></div></div>",
+      "css": ".ds-verdict { display: flex; align-items: center; gap: 16px; border-radius: 22px; padding: 22px 26px; border: 1.5px solid transparent; } .ds-verdict--safe { background: #e1f5e9; border-color: #a9dcbf; color: #0e3d28; } .ds-verdict--safe svg { color: #1a8452; } .ds-verdict--danger { background: #fbe8e6; border-color: #eab3ac; color: #5c1712; } .ds-verdict--danger svg { color: #c33a2f; } .ds-verdict-headline { font-weight: 800; font-size: 1.2rem; line-height: 1.3; } .ds-verdict-meta { font-size: 0.88rem; opacity: 0.75; margin-top: 2px; }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "The single card container used for the upload panel, search panel, and each report-grid detail card.",
+      "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-heading\">Section heading</h2><p>Panel content.</p></section>",
+      "css": ".ds-panel { background: #ffffff; border: 1px solid #d7e0ea; border-radius: 22px; padding: 28px; box-shadow: 0 1px 2px rgba(11,35,64,0.06), 0 8px 24px -12px rgba(11,35,64,0.18); } .ds-panel-heading { font-size: 1.05rem; font-weight: 700; color: #0b2340; margin-bottom: 16px; }"
+    },
+    {
+      "name": "History List Item",
+      "kind": "custom",
+      "refersTo": "history-item",
+      "description": "Session-only in-memory history row; status dot echoes the verdict banner's two reserved colors.",
+      "html": "<button class=\"ds-history-item\"><span class=\"ds-history-dot ds-history-dot--danger\"></span><span class=\"ds-history-names\">Aspirin + Warfarin</span><span class=\"ds-history-time\">2m ago</span></button>",
+      "css": ".ds-history-item { width: 100%; display: flex; align-items: center; gap: 12px; padding: 13px 16px; background: #ffffff; border: 1px solid #d7e0ea; border-radius: 16px; cursor: pointer; text-align: left; color: #0d1e33; transition: border-color 0.15s ease, background 0.15s ease; } .ds-history-item:hover { border-color: #b9cde3; background: #eef3fa; } .ds-history-dot { width: 10px; height: 10px; border-radius: 999px; flex-shrink: 0; } .ds-history-dot--safe { background: #1a8452; } .ds-history-dot--danger { background: #c33a2f; } .ds-history-names { font-weight: 700; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-history-time { color: #5b7089; font-size: 0.85rem; }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "top-nav",
+      "description": "Sticky navy nav bar with pill-well link group and inverted active state.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-inner\"><a class=\"ds-nav-brand\">MedGuard<small>Interaction checker</small></a><div class=\"ds-nav-links\"><a class=\"ds-nav-link ds-nav-link--active\">Home</a><a class=\"ds-nav-link\">Results</a></div></div></nav>",
+      "css": ".ds-nav { position: sticky; top: 0; background: #0b2340; border-bottom: 1px solid #071527; } .ds-nav-inner { max-width: 1040px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; } .ds-nav-brand { display: flex; flex-direction: column; color: #f4f8fc; text-decoration: none; font-weight: 700; font-size: 1.05rem; } .ds-nav-brand small { font-weight: 500; font-size: 0.72rem; color: #a9c0da; } .ds-nav-links { display: flex; gap: 4px; background: rgba(0,0,0,0.18); padding: 4px; border-radius: 999px; } .ds-nav-link { color: #a9c0da; text-decoration: none; font-weight: 600; font-size: 0.92rem; padding: 8px 18px; border-radius: 999px; transition: background 0.15s ease, color 0.15s ease; } .ds-nav-link:hover { color: #f4f8fc; } .ds-nav-link--active { background: #f4f8fc; color: #0b2340; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clinical Verdict",
+    "overview": "MedGuard reads as a medical instrument, not a chat product or a metrics dashboard. It explicitly refuses the AI-chatbot bubble-and-avatar template and the KPI-card-grid template that this category defaults to — no avatars, no floating message bubbles, no colored stat tiles. Structure (fixed order: pair to verdict to detail grid to history) carries the trust; color is spent once, on the one moment it must mean something.\n\nThe palette is a single structural navy over a near-white cool-neutral ground, applied with generous corner radii, pill-shaped controls, and soft ambient shadows — confident and calm rather than alarmed, because the audience named in PRODUCT.md is elderly and non-technical and the product's job is to lower anxiety, not raise it with clinical-red chrome everywhere. Atkinson Hyperlegible Next is used throughout for genuine low-vision legibility, not as a stylistic choice, and is self-hosted (@fontsource) for offline reliability. A single hand-drawn stroke icon set (1.6px, round joins) stands in for both illustration and iconography; there is no icon font and no emoji.",
+    "keyCharacteristics": [
+      "One structural color (navy) carries all non-verdict UI: nav, headings, buttons, pills, borders, focus rings.",
+      "Green and red exist nowhere except the Results verdict banner and its echo (history-list status dots) — confirmed by source: --red-*/--green-* custom properties are declared once in index.css and consumed only in Results.css.",
+      "Pill shapes (999px radius) for every actionable control; generous card radii (16-22px) for containers.",
+      "Errors and invalid states are shown via icon + weight + border, never via color — the color-rationing rule extends to failure states, not just success/danger."
+    ],
+    "rules": [
+      { "name": "The Verdict-Only Color Rule", "body": "Green and red exist nowhere except the Results verdict banner and the history-list dots that echo it. Every other surface, including all error and invalid states, communicates in navy, ink, and border weight only. Before adding a --red-*/--green-* reference anywhere outside Results.css, confirm it is a verdict, not a warning.", "section": "colors" },
+      { "name": "The Tinted-Never-Gray Rule", "body": "Neutral text and borders are always a navy tint (ink, ink-muted, ink-faint, border, border-strong), never a true achromatic gray — this keeps the one-hue-family discipline even in neutral content.", "section": "colors" },
+      { "name": "The One-Face Rule", "body": "Every text role — heading, body, label — is Atkinson Hyperlegible Next. No secondary display or system face is introduced for emphasis; emphasis comes from weight (400/600/700/800) and size only, preserving legibility for the low-vision audience PRODUCT.md names as primary.", "section": "typography" },
+      { "name": "The One-Shadow Rule", "body": "There is exactly one shadow token in the build. It marks 'this is a raised panel'; nothing else in the system uses elevation to communicate state or hierarchy.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep navy as the only structural color across chrome, headings, and primary actions (navy-900 / navy-800 / navy-600).",
+      "Do use full pill radius (999px) for every interactive control (buttons, inputs, pills, nav links).",
+      "Do communicate error/invalid state via icon + border weight + weight, never via a color shift (see .field-error, [aria-invalid=\"true\"]).",
+      "Do confine red and green strictly to the Results verdict banner and its history-dot echo.",
+      "Do set body and heading text in Atkinson Hyperlegible Next at every weight; do not introduce a second face for emphasis."
+    ],
+    "donts": [
+      "Don't introduce red or green anywhere outside Results.css — this was an explicit finish-review finding (3 leaks caught and fixed) and is now an enforced boundary, verified by grep against --red-/--green- usage at documentation time.",
+      "Don't use amber/yellow or red as a 'quiet' warning tint on Home; the disclaimer note is navy-tinted (navy-50/navy-800) precisely so it doesn't compete with the verdict.",
+      "Don't add drop shadows beyond the single --shadow-card token, or use shadow to indicate interactive state — hover/focus are communicated by background and border-color shifts only.",
+      "Don't add kickers, eyebrows, or uppercase-tracked section labels beyond the one existing 'or' divider; none exist in the shipped build and none should be inherited as a pattern."
+    ]
+  }
+}
