@@ -46,6 +46,34 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(alternatives.status_code, 200)
         self.assertEqual(alternatives.json()["alternatives"], [])
 
+    def test_contextual_alternatives_include_drug_identity(self):
+        repository = Repository(connect(self.path))
+        try:
+            repository.add_contract_interaction(
+                pair_id=9001, definition_id="42", first=self.a.id, second=self.b.id,
+                severity="Major", mechanism="Synergy", pair_key="MOCK-A|MOCK-B", detail_url="test",
+            )
+            repository.add_contextual_alternative(
+                pair_id=9001, original_drug_id=self.a.id, side="A", atc_code="N06A",
+                alternative_drug_id=self.d.id, source_url="test", scraped_at="now",
+            )
+            repository.connection.commit()
+        finally:
+            repository.connection.close()
+
+        response = self.client.get(f"/drugs/{self.a.id}/alternatives", params={"pair_id": 9001})
+        self.assertEqual(response.status_code, 200)
+        alternative = response.json()["alternatives"][0]
+        self.assertEqual(alternative["alternative_drug"], {
+            "id": self.d.id,
+            "canonical_name": "Drug D",
+            "ddinter_id": "MOCK-D",
+            "drugbank_id": None,
+        })
+        self.assertEqual(alternative["pair_id"], 9001)
+        self.assertEqual(alternative["side"], "A")
+        self.assertEqual(alternative["atc_code"], "N06A")
+
     def test_malformed_bodies(self):
         for body in ({}, {"drugs": "Drug A"}, {"drugs": []}, {"drugs": ["Drug A"]}, {"drugs": ["Drug A", " "]}, {"drugs": ["Drug A", 123]}, {"drugs": ["Drug A", None]}, {"drugs": ["Drug A"] * 51}, {"drugs": ["x" * 301, "Drug A"]}, {"drugs": ["Drug A", "Drug B"], "extra": True}):
             with self.subTest(body=body):
