@@ -12,7 +12,6 @@ import {
   SpinnerIcon,
   TrashIcon,
   AlertIcon,
-  CheckCircleIcon,
   ArrowRightIcon,
   PrinterIcon,
   ShieldMark,
@@ -263,64 +262,99 @@ export default function Home() {
             <div className="upload-card" data-reveal>
               <h2 className="upload-card__heading">Start your check</h2>
 
-              {!photo ? (
-                <div
-                  className={"dropzone" + (isDragging ? " dropzone--active" : "")}
-                  onDragOver={(event) => {
-                    event.preventDefault();
-                    setIsDragging(true);
-                  }}
-                  onDragLeave={() => setIsDragging(false)}
-                  onDrop={handleDrop}
-                >
-                  <span className="dropzone__sweep" aria-hidden="true" />
-                  <ScanFrameIcon className="dropzone__icon" />
-                  <p className="dropzone__title">Drag your medicine photos here</p>
-                  <p className="dropzone__hint">2 to 4 boxes works best</p>
-                </div>
-              ) : (
-                <div className="photo-chip">
-                  <img src={photo.url} alt="" className="photo-chip__thumb" />
-                  <div className="photo-chip__meta">
-                    <p className="photo-chip__name">{photo.name}</p>
-                    <p className="photo-chip__status">Ready to check</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="icon-btn"
-                    onClick={() => setPhoto(null)}
-                    disabled={busy}
-                    aria-label="Remove photo"
-                  >
-                    <TrashIcon />
-                  </button>
-                </div>
+              <div
+                className={"dropzone" + (isDragging ? " dropzone--active" : "")}
+                onDragOver={(event) => {
+                  event.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+              >
+                <span className="dropzone__sweep" aria-hidden="true" />
+                <ScanFrameIcon className="dropzone__icon" />
+                <p className="dropzone__title">Drag your medicine photos here</p>
+                <p className="dropzone__hint">
+                  Up to {MAX_PHOTOS} boxes — add them all, then check them in one go
+                </p>
+              </div>
+
+              {photos.length > 0 && (
+                <ul className="photo-list">
+                  {photos.map((photo, index) => (
+                    <li key={photo.url} className="photo-chip">
+                      <img src={photo.url} alt="" className="photo-chip__thumb" />
+                      <div className="photo-chip__meta">
+                        <p className="photo-chip__name">{photo.file.name}</p>
+                        <p className="photo-chip__status">Ready to check</p>
+                      </div>
+                      <button
+                        type="button"
+                        className="icon-btn"
+                        onClick={() => removePhoto(index)}
+                        disabled={busy}
+                        aria-label={`Remove ${photo.file.name}`}
+                      >
+                        <TrashIcon />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               )}
 
-              <button
-                type="button"
-                className="mg-btn mg-btn--solid mg-btn--block"
-                onClick={photo ? handleCheckPhoto : () => fileInputRef.current?.click()}
-                disabled={busy}
-              >
-                {submitting === "photo" ? (
-                  <>
-                    <SpinnerIcon size={18} /> Reading your medicine
-                  </>
-                ) : photo ? (
-                  "Check interactions"
-                ) : (
-                  "Choose photos"
+              <div className="upload-card__actions">
+                {photos.length > 0 && (
+                  <button
+                    type="button"
+                    className="mg-btn mg-btn--solid mg-btn--block"
+                    onClick={handleCheckPhotos}
+                    disabled={busy}
+                  >
+                    {submitting === "photo" ? (
+                      <>
+                        <SpinnerIcon size={18} /> Reading your medicines
+                      </>
+                    ) : (
+                      `Check ${photos.length} ${photos.length === 1 ? "photo" : "photos"}`
+                    )}
+                  </button>
                 )}
-              </button>
+
+                <button
+                  type="button"
+                  className={
+                    "mg-btn mg-btn--block " +
+                    (photos.length > 0 ? "mg-btn--outline" : "mg-btn--solid")
+                  }
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={busy || photos.length >= MAX_PHOTOS}
+                >
+                  {photos.length === 0
+                    ? "Choose photos"
+                    : photos.length >= MAX_PHOTOS
+                      ? `Maximum ${MAX_PHOTOS} photos`
+                      : "Add another photo"}
+                </button>
+              </div>
 
               <input
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
+                multiple
                 className="visually-hidden"
-                onChange={(event) => handleFiles(event.target.files)}
+                onChange={(event) => {
+                  handleFiles(event.target.files);
+                  event.target.value = "";
+                }}
               />
+
+              {failure && (
+                <p className="field-error" role="alert">
+                  <AlertIcon width={16} height={16} />
+                  {failure}
+                </p>
+              )}
 
               <p className="upload-card__alt">
                 Don't have the box handy? <a href="#search">Search by name</a>
@@ -406,52 +440,23 @@ export default function Home() {
                   </div>
 
                   <div className="checking__verdict">
-                    {selectedIds.length < 2 && (
-                      <div className="preview preview--quiet">
-                        <InfoIcon />
-                        <p>Add one more box and we can check the pair.</p>
-                      </div>
-                    )}
-
-                    {selectedIds.length === 2 && pairReport && (
-                      <div
-                        className={
-                          "preview preview--" +
-                          (pairReport.verdict === "safe" ? "safe" : "danger")
-                        }
-                      >
-                        {pairReport.verdict === "safe" ? <CheckCircleIcon /> : <AlertIcon />}
-                        <div>
-                          <p className="preview__headline">{pairReport.verdictHeadline}</p>
-                          <p className="preview__body">{pairReport.interaction}</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {selectedIds.length === 2 && !pairReport && (
-                      <div className="preview preview--unknown">
-                        <InfoIcon />
-                        <div>
-                          <p className="preview__headline">Not enough data to confirm</p>
-                          <p className="preview__body">
-                            We have no verified entry for this combination yet. Ask your
-                            pharmacist before taking these together.
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {selectedIds.length > 2 && (
-                      <div className="preview preview--quiet">
-                        <InfoIcon />
-                        <p>
-                          This build checks two medicines at a time. Deselect one to
-                          continue.
-                        </p>
-                      </div>
-                    )}
+                    <div className="preview preview--quiet">
+                      <InfoIcon />
+                      <p>
+                        {canCheckBoxes
+                          ? `Every one of the ${(chosen.length * (chosen.length - 1)) / 2} possible pairs gets checked against the database.`
+                          : "Add one more box — a combination needs at least two medicines."}
+                      </p>
+                    </div>
                   </div>
                 </div>
+              )}
+
+              {failure && (
+                <p className="field-error" role="alert">
+                  <AlertIcon width={16} height={16} />
+                  {failure}
+                </p>
               )}
 
               <div className="checking__cta">
@@ -459,20 +464,20 @@ export default function Home() {
                   type="button"
                   className="mg-btn mg-btn--solid"
                   onClick={handleCheckBoxes}
-                  disabled={busy || !pairReport}
+                  disabled={busy || !canCheckBoxes}
                 >
                   {submitting === "boxes" ? (
                     <>
                       <SpinnerIcon size={18} /> Checking
                     </>
                   ) : (
-                    `Check ${chosen.length === 2 ? "these 2 medicines" : "my medicines"}`
+                    `Check ${canCheckBoxes ? `these ${chosen.length} medicines` : "my medicines"}`
                   )}
                 </button>
                 <p className="checking__hint">
-                  {pairReport
-                    ? "Takes about 8 seconds. The verdict comes from DDInter 2.0, not the AI."
-                    : "Pick two boxes we have verified data for to run a check."}
+                  {canCheckBoxes
+                    ? "The verdict comes from the DDInter catalogue, not the AI."
+                    : "Pick at least two boxes to check a combination."}
                 </p>
               </div>
             </div>
