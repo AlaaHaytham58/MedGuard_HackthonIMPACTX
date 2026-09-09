@@ -3,6 +3,8 @@ __pycache__/
 *.pyc
 venv/
 .venv/
+data/medicines_data_updated.csv
+data/eg_drugs.json
 server.log
 response*.json
 db/*.sqlite*
