@@ -9,5 +9,9 @@ server.log
 response*.json
 db/*.sqlite*
 
+# The reviewed DDInter catalog is bundled with the serverless demo.
+!db/ddinter.sqlite
+
 # Generated DDInter application databases
 ddinter_demo*.sqlite
+.vercel

@@ -3,17 +3,30 @@ import json
 import re
 from functools import lru_cache
 from pathlib import Path
+from typing import Any
 from urllib.parse import quote
 from urllib.request import urlopen
-from typing import Any
-
 
 BRANDS_PATH = Path(__file__).parents[1] / "data" / "egyptian_brands.json"
 CATALOG_PATH = Path(__file__).parents[1] / "data" / "eg_drugs.csv"
 RXNORM_URL = "https://rxnav.nlm.nih.gov/REST/rxcui.json?name="
 
-
 CatalogRow = dict[str, Any]
+
+# Expanded regex to capture complex packaging text, slogans, and multi-word tablet counts
+_OCR_NOISE_PATTERNS = (
+    r"\b(relieves?|reduces?|treats?|lowers?|effective|absorbed|gentle\s+on|sugar\s+coated|film\s+coated|coated|recubiertas?)\b",
+    r"\b(v[ií]a\s+de\s+administraci[oó]n|route\s+of\s+administration|oral|formulation|new|pain|relief)\b",
+    r"^\s*\d+(?:\.\d+)?\s*(?:mg|mcg|μg|ug|g|ml)\s*$",
+    r"^\s*\d+\s*(?:tablets?|tabs?|capsules?|caps?|tabletas?)(?:\s+\w+)*\s*$",
+)
+
+
+def _is_ocr_noise(value: object) -> bool:
+    text = " ".join(str(value or "").split())
+    if not text:
+        return True
+    return any(re.search(pattern, text, re.IGNORECASE) for pattern in _OCR_NOISE_PATTERNS)
 
 
 def normalize_key(value: object) -> str:
@@ -251,7 +264,6 @@ def find_alternatives(
         if len(alternatives) == limit:
             break
 
-    # Non-blocking advisory warnings
     warning = None
     if "+" in active_key and dosage_mg is None:
         warning = "Combination medicine without specified dosage; verify individual component strengths with a pharmacist."
@@ -267,11 +279,13 @@ def find_alternatives(
         "warning": warning,
     }
 
+
 def normalize_items(items: list[dict] | None) -> dict:
     brands = _load_brands()
     catalog = _load_catalog()
     medications = []
     unresolved = []
+    seen_generics = set()
 
     for item in items or []:
         if not isinstance(item, dict):
@@ -279,16 +293,23 @@ def normalize_items(items: list[dict] | None) -> dict:
             continue
         input_name = item.get("raw_text") or item.get("drug_name_guess") or ""
         drug_name = item.get("drug_name_guess") or input_name
+        
+        if _is_ocr_noise(input_name) or _is_ocr_noise(drug_name):
+            continue
+            
         dosage_mg = parse_dosage_mg(item.get("dosage_guess") or input_name)
         lookup_name = normalize_key(drug_name)
         brand = brands.get(lookup_name)
         catalog_matches = [
             row for row in catalog
             if normalize_key(row["trade_name"]) == lookup_name
+            or normalize_key(row["trade_name"]).startswith(lookup_name + " ")
         ]
 
+        matched_med = None
+
         if brand:
-            medications.append({
+            matched_med = {
                 "input_name": input_name,
                 "generic_name": brand["generic_name"],
                 "dosage_mg": dosage_mg,
@@ -297,12 +318,10 @@ def normalize_items(items: list[dict] | None) -> dict:
                 "match_confidence": 1.0,
                 "explanation_en": "",
                 "explanation_ar": "",
-            })
-            continue
-
-        if catalog_matches:
+            }
+        elif catalog_matches:
             catalog_match = catalog_matches[0]
-            medications.append({
+            matched_med = {
                 "input_name": input_name,
                 "generic_name": catalog_match["active_key"],
                 "dosage_mg": dosage_mg or catalog_match["strength_mg"],
@@ -311,21 +330,27 @@ def normalize_items(items: list[dict] | None) -> dict:
                 "match_confidence": min(float(item.get("confidence", 0.8)), 0.95),
                 "explanation_en": "",
                 "explanation_ar": "",
-            })
-            continue
+            }
+        else:
+            rxnorm_match = _rxnorm_lookup(lookup_name) if lookup_name else None
+            if rxnorm_match:
+                matched_med = {
+                    "input_name": input_name,
+                    "generic_name": rxnorm_match["name"],
+                    "dosage_mg": dosage_mg,
+                    "rxnorm_id": rxnorm_match["rxcui"],
+                    "match_method": "rxnorm",
+                    "match_confidence": min(float(item.get("confidence", 0.8)), 0.9),
+                    "explanation_en": "",
+                    "explanation_ar": "",
+                }
 
-        rxnorm_match = _rxnorm_lookup(lookup_name) if lookup_name else None
-        if rxnorm_match:
-            medications.append({
-                "input_name": input_name,
-                "generic_name": rxnorm_match["name"],
-                "dosage_mg": dosage_mg,
-                "rxnorm_id": rxnorm_match["rxcui"],
-                "match_method": "rxnorm",
-                "match_confidence": min(float(item.get("confidence", 0.8)), 0.9),
-                "explanation_en": "",
-                "explanation_ar": "",
-            })
+        if matched_med:
+            # Deduplicate by active generic ingredient
+            gen_key = matched_med["generic_name"]
+            if gen_key not in seen_generics:
+                seen_generics.add(gen_key)
+                medications.append(matched_med)
             continue
 
         unresolved.append(_unresolved(

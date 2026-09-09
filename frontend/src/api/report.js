@@ -31,6 +31,16 @@ const SUMMARIES = {
     "We could not confirm this combination against the medical database. Ask your pharmacist before taking these together.",
 };
 
+// Mirrors the catalogue's own ranking. Needed because the flattened /pipeline
+// report sends the severity label without the numeric rank, and a "Major"
+// interaction arriving as rank 0 would be shown as a mild caution.
+const SEVERITY_RANK = { major: 3, moderate: 2, minor: 1, unknown: 0 };
+
+function rankOf(pair, severity) {
+  if (typeof pair.severity_rank === "number") return pair.severity_rank;
+  return SEVERITY_RANK[(severity ?? "").toLowerCase()] ?? 0;
+}
+
 /** A pair endpoint may name a drug as a plain string or as a full catalogue record. */
 function drugName(value) {
   if (typeof value === "string") return value;
@@ -55,11 +65,12 @@ function mapPair(pair, names) {
   // Interaction detail is flattened onto the pair by /check, but nested under
   // `interaction` by the catalogue's own endpoints. Accept either.
   const detail = pair.interaction ?? pair;
+  const severity = detail.severity ?? null;
   return {
     drugA: names.get(a.toLowerCase()) ?? a,
     drugB: names.get(b.toLowerCase()) ?? b,
-    severity: detail.severity ?? null,
-    severityRank: pair.severity_rank ?? 0,
+    severity,
+    severityRank: rankOf(pair, severity),
     description: detail.description ?? detail.interaction_text ?? null,
     mechanism: detail.mechanism ?? null,
     management: detail.management ?? null,
@@ -152,19 +163,44 @@ function newId() {
   return `check-${Date.now()}`;
 }
 
-/** Build a report from POST /pipeline (the photo flow). */
+/** Build a report from POST /pipeline (the photo flow).
+ *
+ * /pipeline returns a flattened report (`drugs`, `interactionPairs`, `medications`,
+ * …). Older builds returned the raw stages instead (`normalized.medications`), so
+ * both are accepted — a deploy running either version still renders. */
 export function reportFromPipeline(data) {
   const normalized = data.normalized ?? {};
+  const rawMedications = data.medications ?? normalized.medications ?? [];
+
+  const medications = rawMedications.length
+    ? rawMedications.map(mapMedication)
+    : (data.drugs ?? []).map((drug) => ({
+        inputName: drug.brand,
+        ingredient: drug.ingredient,
+        dosageMg: null,
+        matchMethod: drug.source,
+      }));
+
+  const check = {
+    status: data.status ?? data.interactions?.status,
+    interactions: data.interactionPairs ?? data.interactions?.interactions ?? [],
+    no_record_pairs: data.noRecordPairs ?? data.interactions?.no_record_pairs ?? [],
+    resolutions: data.resolutions ?? data.interactions?.resolutions ?? [],
+    comparisons: data.interactions?.comparisons ?? 0,
+    notice: data.notice ?? data.interactions?.notice,
+    warning: data.catalogWarning ?? data.interactions?.warning,
+  };
+
   return assemble({
     id: newId(),
     source: "photo",
-    medications: (normalized.medications ?? []).map(mapMedication),
-    unresolved: (normalized.unresolved ?? []).map((item) => ({
-      inputName: item.input_name,
+    medications,
+    unresolved: (data.unresolved ?? normalized.unresolved ?? []).map((item) => ({
+      inputName: item.input_name ?? item.inputName ?? "",
       reason: item.reason,
     })),
-    check: data.interactions ?? {},
-    duplicates: data.duplicates,
+    check,
+    duplicates: data.duplicates ?? data.interactions?.duplicate_active_ingredients,
     alternatives: data.alternatives,
     imageWarnings: data.extracted?.image_quality_warnings ?? [],
   });
