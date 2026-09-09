@@ -5,6 +5,7 @@ from functools import lru_cache
 from pathlib import Path
 from urllib.parse import quote
 from urllib.request import urlopen
+from typing import Any
 
 
 BRANDS_PATH = Path(__file__).parents[1] / "data" / "egyptian_brands.json"
@@ -12,18 +13,39 @@ CATALOG_PATH = Path(__file__).parents[1] / "data" / "eg_drugs.csv"
 RXNORM_URL = "https://rxnav.nlm.nih.gov/REST/rxcui.json?name="
 
 
-def normalize_key(value: str) -> str:
-    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+CatalogRow = dict[str, Any]
 
 
-def parse_dosage_mg(value: str) -> float | None:
-    match = re.search(r"(\d+(?:\.\d+)?)\s*mg\b", value.lower())
-    return float(match.group(1)) if match else None
+def normalize_key(value: object) -> str:
+    if value is None:
+        return ""
+    return re.sub(r"[^a-z0-9]+", " ", str(value).lower()).strip()
 
 
-def _canonical_active(value: str) -> str:
+def parse_dosage_mg(value: object) -> float | None:
+    if value is None:
+        return None
+    match = re.search(
+        r"(\d+(?:\.\d+)?)\s*(mcg|μg|ug|mg|g)\b",
+        str(value).lower(),
+    )
+    if not match:
+        return None
+
+    amount = float(match.group(1))
+    unit = match.group(2)
+    if unit in {"mcg", "μg", "ug"}:
+        return amount / 1000
+    if unit == "g":
+        return amount * 1000
+    return amount
+
+
+def _canonical_active(value: object) -> str:
+    if value is None:
+        return ""
     ingredients = []
-    for ingredient in value.lower().split("+"):
+    for ingredient in re.split(r"\s*(?:\+|/|,|&)\s*", str(value).lower()):
         ingredient = re.sub(r"\([^)]*\)", "", ingredient)
         ingredient = re.sub(
             r"\b(fumarate|hydrochloride|sodium|calcium|potassium|maleate)\b",
@@ -36,13 +58,20 @@ def _canonical_active(value: str) -> str:
     return "+".join(sorted(set(ingredients)))
 
 
-def _catalog_trade_name(value: str) -> str:
-    name = re.split(r"\s+\d+(?:\.\d+)?\s*(?:mg|mcg|g|ml)\b", value, maxsplit=1, flags=re.I)[0]
+def _catalog_trade_name(value: object) -> str:
+    if value is None:
+        return ""
+    name = re.split(
+        r"\s+\d+(?:\.\d+)?\s*(?:mg|mcg|μg|ug|g|ml)\b",
+        str(value),
+        maxsplit=1,
+        flags=re.I,
+    )[0]
     return name.strip(" -").title()
 
 
 @lru_cache(maxsize=1)
-def _load_catalog() -> tuple[dict[str, str], ...]:
+def _load_catalog() -> tuple[CatalogRow, ...]:
     if not CATALOG_PATH.exists():
         return ()
 
@@ -50,28 +79,47 @@ def _load_catalog() -> tuple[dict[str, str], ...]:
         rows = csv.DictReader(catalog_file)
         return tuple(
             {
-                "name": row.get("name", "").strip(),
-                "active": row.get("active", "").strip(),
+                "name": (row.get("name") or "").strip(),
+                "active": (row.get("active") or "").strip(),
                 "active_key": _canonical_active(row.get("active", "")),
                 "strength_mg": parse_dosage_mg(row.get("name", "")),
                 "trade_name": _catalog_trade_name(row.get("name", "")),
-                "form": row.get("form", "").strip(),
-                "barcode": row.get("barcode", "").strip(),
+                "form": (row.get("form") or "").strip(),
+                "barcode": (row.get("barcode") or "").strip(),
             }
             for row in rows
-            if row.get("name", "").strip() and row.get("active", "").strip()
+            if (row.get("name") or "").strip()
+            and (row.get("active") or "").strip()
         )
 
 
-def _load_brands() -> dict[str, dict[str, str | None]]:
+@lru_cache(maxsize=1)
+def _load_brands() -> dict[str, dict[str, Any]]:
     if not BRANDS_PATH.exists():
         return {}
     with BRANDS_PATH.open(encoding="utf-8") as brands_file:
         raw_brands = json.load(brands_file)
-    return {normalize_key(name): details for name, details in raw_brands.items()}
+    if not isinstance(raw_brands, dict):
+        return {}
+
+    normalized = {}
+    for name, details in raw_brands.items():
+        if not isinstance(details, dict):
+            continue
+        generic_name = details.get("generic_name") or details.get("active")
+        if not generic_name:
+            continue
+        normalized[normalize_key(name)] = {
+            **details,
+            "generic_name": _canonical_active(generic_name),
+        }
+    return normalized
 
 
-def _rxnorm_lookup(name: str) -> str | None:
+@lru_cache(maxsize=512)
+def _rxnorm_lookup(name: str) -> dict[str, str] | None:
+    if not name:
+        return None
     try:
         with urlopen(RXNORM_URL + quote(name), timeout=5) as response:
             data = json.load(response)
@@ -79,7 +127,23 @@ def _rxnorm_lookup(name: str) -> str | None:
         return None
 
     identifiers = data.get("idGroup", {}).get("rxnormId", [])
-    return identifiers[0] if identifiers else None
+    if not identifiers:
+        return None
+
+    rxcui = identifiers[0]
+    try:
+        with urlopen(
+            f"https://rxnav.nlm.nih.gov/REST/rxcui/{quote(rxcui)}/properties.json",
+            timeout=5,
+        ) as response:
+            properties = json.load(response).get("properties", {})
+    except (OSError, ValueError):
+        return {"rxcui": rxcui, "name": name}
+
+    return {
+        "rxcui": rxcui,
+        "name": _canonical_active(properties.get("name") or name),
+    }
 
 
 def _unresolved(input_name: str, reason: str) -> dict:
@@ -111,9 +175,6 @@ def find_alternatives(
             if row["strength_mg"] == dosage_mg
         ]
 
-        # A base brand such as Panadol may have both single-ingredient and
-        # combination variants at the same strength. Prefer the uncombined
-        # records when the caller provides only the base brand and dosage.
         single_ingredient_rows = [
             row for row in source_catalog_rows
             if "+" not in row["active_key"]
@@ -146,7 +207,7 @@ def find_alternatives(
     if not source_catalog_rows and dosage_mg is not None:
         return {
             "input_name": brand_name,
-            "generic_name": next(iter(source_active_keys)),
+            "generic_name": next(iter(source_active_keys), source.get("generic_name") if source else None),
             "alternatives": [],
             "warning": (
                 "The catalog identifies this medicine, but does not record "
@@ -163,17 +224,6 @@ def find_alternatives(
     if source_catalog_rows:
         active_key = source_catalog_rows[0]["active_key"]
         generic_name = active_key
-
-    if "+" in active_key and dosage_mg is None:
-        return {
-            "input_name": brand_name,
-            "generic_name": generic_name,
-            "alternatives": [],
-            "warning": (
-                "This is a combination medicine. Exact active-ingredient "
-                "strengths are not recorded, so alternatives cannot be verified."
-            ),
-        }
 
     alternatives = []
     seen_names = set()
@@ -201,8 +251,11 @@ def find_alternatives(
         if len(alternatives) == limit:
             break
 
+    # Non-blocking advisory warnings
     warning = None
-    if dosage_mg is None:
+    if "+" in active_key and dosage_mg is None:
+        warning = "Combination medicine without specified dosage; verify individual component strengths with a pharmacist."
+    elif dosage_mg is None:
         warning = "Dosage was not provided; verify the strength with a pharmacist."
     elif not alternatives:
         warning = "No dosage-matched alternative is in the medicine catalog."
@@ -214,14 +267,16 @@ def find_alternatives(
         "warning": warning,
     }
 
-
-def normalize_items(items: list[dict]) -> dict:
+def normalize_items(items: list[dict] | None) -> dict:
     brands = _load_brands()
     catalog = _load_catalog()
     medications = []
     unresolved = []
 
-    for item in items:
+    for item in items or []:
+        if not isinstance(item, dict):
+            unresolved.append(_unresolved("", "Invalid medicine item."))
+            continue
         input_name = item.get("raw_text") or item.get("drug_name_guess") or ""
         drug_name = item.get("drug_name_guess") or input_name
         dosage_mg = parse_dosage_mg(item.get("dosage_guess") or input_name)
@@ -259,13 +314,13 @@ def normalize_items(items: list[dict]) -> dict:
             })
             continue
 
-        rxnorm_id = _rxnorm_lookup(lookup_name) if lookup_name else None
-        if rxnorm_id:
+        rxnorm_match = _rxnorm_lookup(lookup_name) if lookup_name else None
+        if rxnorm_match:
             medications.append({
                 "input_name": input_name,
-                "generic_name": lookup_name,
+                "generic_name": rxnorm_match["name"],
                 "dosage_mg": dosage_mg,
-                "rxnorm_id": rxnorm_id,
+                "rxnorm_id": rxnorm_match["rxcui"],
                 "match_method": "rxnorm",
                 "match_confidence": min(float(item.get("confidence", 0.8)), 0.9),
                 "explanation_en": "",
