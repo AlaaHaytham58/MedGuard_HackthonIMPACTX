@@ -1,0 +1,41 @@
+{
+  "mode": "target_export_only",
+  "generated_at": "2026-09-09T17:05:14+00:00",
+  "scope_hash": "66ae4126f1812423",
+  "selected_ingredients": 57,
+  "resolved_ingredients": 57,
+  "possible_unordered_pairs": 1596,
+  "discovery_status": {
+    "complete": 57
+  },
+  "discovered_pair_ids": 1379,
+  "target_pairs_in_checkpoint": 686,
+  "target_pair_details": 17,
+  "target_references": 45,
+  "target_alternatives": 714,
+  "target_severity_counts": {
+    "Major": 9,
+    "Minor": 8,
+    "Moderate": 63,
+    "Unknown": 606
+  },
+  "unresolved_discovered_pairs": 693,
+  "target_failures": 111,
+  "target_complete": false,
+  "database": {
+    "interaction_definitions": 5559,
+    "interaction_pairs": 67600,
+    "pair_details": 17,
+    "alternatives": 714,
+    "pair_references": 45,
+    "failures": 111,
+    "completed_definitions": 410,
+    "zero_pair_definitions": 0,
+    "pending_definitions": 5149,
+    "represented_definitions": 426,
+    "integrity": "ok",
+    "foreign_key_violations": 0,
+    "checkpoint_complete": false
+  },
+  "network_requests": 0
+}

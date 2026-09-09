@@ -7,3 +7,7 @@ data/medicines_data_updated.csv
 data/eg_drugs.json
 server.log
 response*.json
+db/*.sqlite*
+
+# Generated DDInter application databases
+ddinter_demo*.sqlite
