@@ -2,9 +2,13 @@ import json
 import os
 import re
 
+import truststore
+
+truststore.inject_into_ssl()
+
 from google import genai
 
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-3.6-flash"
 
 EXTRACTION_PROMPT = """You are reading photo(s) of medication box(es)/strip(s).
 For each distinct medication you can identify, return an entry with:
@@ -38,6 +42,28 @@ Return ONLY valid JSON, no prose, no markdown fences, matching exactly this shap
 
 _client = None
 
+_MOCK_RESPONSE = {
+    "items": [
+        {
+            "raw_text": "Brufen 400mg",
+            "drug_name_guess": "Brufen",
+            "dosage_guess": "400mg",
+            "confidence": 0.95,
+            "bounding_box": [120, 80, 260, 620],
+            "language": "en",
+        },
+        {
+            "raw_text": "Concor 5mg",
+            "drug_name_guess": "Concor",
+            "dosage_guess": "5mg",
+            "confidence": 0.93,
+            "bounding_box": [340, 80, 480, 620],
+            "language": "en",
+        },
+    ],
+    "image_quality_warnings": [],
+}
+
 
 def _get_client() -> genai.Client:
     global _client
@@ -61,6 +87,9 @@ def extract_drugs(image_bytes_list: list[bytes]) -> dict:
     This is a plain function on purpose (no FastAPI/HTTP here) so it can be called
     directly in-process later by the /pipeline orchestrator, per the backend guide.
     """
+    if os.getenv("MOCK_EXTRACT") == "1":
+        return json.loads(json.dumps(_MOCK_RESPONSE))  # deep copy, caller may mutate
+
     client = _get_client()
 
     parts = [
