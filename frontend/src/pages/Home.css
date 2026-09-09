@@ -1,15 +1,4 @@
-/* ---------- Layout shells ---------- */
-
-.shell {
-  max-width: 1140px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.shell--narrow {
-  max-width: 900px;
-}
+/* ---------- Layout ---------- */
 
 .kicker {
   text-transform: uppercase;
@@ -74,53 +63,6 @@
     opacity: 1;
     transform: none;
   }
-}
-
-/* ---------- Buttons ---------- */
-
-.mg-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: inherit;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 17px 30px;
-  border-radius: 3px;
-  border: 2px solid var(--navy-900);
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.mg-btn--solid {
-  background: var(--navy-900);
-  color: var(--surface);
-}
-
-.mg-btn--outline {
-  background: transparent;
-  color: var(--navy-900);
-}
-
-.mg-btn--block {
-  width: 100%;
-  margin-top: 16px;
-}
-
-.mg-btn:hover:not(:disabled) {
-  background: var(--cyan);
-  border-color: var(--cyan);
-  color: var(--navy-900);
-}
-
-.mg-btn:disabled {
-  cursor: not-allowed;
-  background: var(--bg);
-  border-color: var(--border);
-  color: #9aacc2;
 }
 
 /* ---------- Hero ---------- */
@@ -216,6 +158,22 @@
   letter-spacing: 0.12em;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.upload-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.photo-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .upload-card__alt {
@@ -1050,10 +1008,6 @@
 }
 
 @media (max-width: 640px) {
-  .shell {
-    padding: 0 20px;
-  }
-
   .pipeline,
   .starter,
   .picker {

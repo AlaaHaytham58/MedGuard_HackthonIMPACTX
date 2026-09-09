@@ -31,16 +31,39 @@ const SUMMARIES = {
     "We could not confirm this combination against the medical database. Ask your pharmacist before taking these together.",
 };
 
-function mapPair(pair) {
+/** A pair endpoint may name a drug as a plain string or as a full catalogue record. */
+function drugName(value) {
+  if (typeof value === "string") return value;
+  return value?.canonical_name ?? "";
+}
+
+/** Catalogue name -> the wording on the patient's own box ("Acetaminophen" -> "Paracetamol"). */
+function displayNames(resolutions) {
+  const names = new Map();
+  (resolutions ?? []).forEach((resolution) => {
+    const canonical = resolution.canonical_name ?? resolution.drug?.canonical_name;
+    if (canonical && resolution.input_name) {
+      names.set(canonical.toLowerCase(), resolution.input_name);
+    }
+  });
+  return names;
+}
+
+function mapPair(pair, names) {
+  const a = drugName(pair.drug_a);
+  const b = drugName(pair.drug_b);
+  // Interaction detail is flattened onto the pair by /check, but nested under
+  // `interaction` by the catalogue's own endpoints. Accept either.
+  const detail = pair.interaction ?? pair;
   return {
-    drugA: pair.drug_a,
-    drugB: pair.drug_b,
-    severity: pair.severity,
+    drugA: names.get(a.toLowerCase()) ?? a,
+    drugB: names.get(b.toLowerCase()) ?? b,
+    severity: detail.severity ?? null,
     severityRank: pair.severity_rank ?? 0,
-    description: pair.description,
-    mechanism: pair.mechanism,
-    management: pair.management,
-    pairId: pair.pair_id,
+    description: detail.description ?? detail.interaction_text ?? null,
+    mechanism: detail.mechanism ?? null,
+    management: detail.management ?? null,
+    pairId: detail.pair_id ?? null,
   };
 }
 
@@ -92,7 +115,8 @@ function deriveVerdict({ interactions, duplicates, status, catalogWarning }) {
 }
 
 function assemble({ id, source, medications, unresolved, check, duplicates, alternatives, imageWarnings }) {
-  const interactions = (check.interactions ?? []).map(mapPair);
+  const names = displayNames(check.resolutions);
+  const interactions = (check.interactions ?? []).map((pair) => mapPair(pair, names));
   const mappedDuplicates = (duplicates ?? []).map(mapDuplicate);
   const catalogWarning = check.warning ?? null;
 
@@ -114,7 +138,7 @@ function assemble({ id, source, medications, unresolved, check, duplicates, alte
     medications,
     unresolved: unresolved ?? [],
     interactions,
-    noRecordPairs: (check.no_record_pairs ?? []).map(mapPair),
+    noRecordPairs: (check.no_record_pairs ?? []).map((pair) => mapPair(pair, names)),
     duplicates: mappedDuplicates,
     alternatives: (alternatives ?? []).map(mapAlternativeGroup).filter((group) => group.options.length > 0),
     comparisons: check.comparisons ?? 0,

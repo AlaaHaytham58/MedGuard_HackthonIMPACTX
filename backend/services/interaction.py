@@ -93,6 +93,17 @@ def check_interactions(medications: list[dict]) -> dict:
         "interactions": [_pair(item) for item in response.interactions],
         "no_record_pairs": [_pair(item) for item in response.no_record_pairs],
         "unresolved": unresolved,
+        # Lets the caller show the name printed on the patient's box rather than
+        # the catalogue's US spelling — an Egyptian user reads "Paracetamol",
+        # not "Acetaminophen", and being shown the latter reads as a wrong answer.
+        "resolutions": [
+            {
+                "input_name": resolution.input_name,
+                "canonical_name": resolution.drug.canonical_name if resolution.drug else None,
+                "status": resolution.status,
+            }
+            for resolution in response.resolutions
+        ],
         "comparisons": response.comparisons,
         "notice": NO_RECORD_NOTICE,
         "warning": None,
