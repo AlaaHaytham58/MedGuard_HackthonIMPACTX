@@ -38,6 +38,33 @@ def _split_ingredients(generic_name: str) -> list[str]:
     return list(seen)
 
 
+def _dedupe_products(meds: list[dict]) -> list[dict]:
+    """Collapses entries that are the same physical product (e.g. the same
+    box photographed twice) so they don't flag as a "duplicate" against
+    themselves. Entries without an input_name are never collapsed together,
+    since there's no signal they're the same product.
+    """
+    seen_names: set[str] = set()
+    unique_meds = []
+    for med in meds:
+        name = (med.get("input_name") or "").strip().lower()
+        if name and name in seen_names:
+            continue
+        if name:
+            seen_names.add(name)
+        unique_meds.append(med)
+    return unique_meds
+
+
+def _display_name(med: dict) -> str:
+    input_name = med.get("input_name")
+    if input_name:
+        return input_name
+    generic_name = med.get("generic_name") or "this medication"
+    dosage_mg = med.get("dosage_mg")
+    return f"{generic_name} ({dosage_mg}mg)" if dosage_mg else generic_name
+
+
 def _join_names(names: list[str]) -> str:
     if len(names) <= 1:
         return "".join(names)
@@ -66,9 +93,10 @@ def find_duplicate_active_ingredients(medications: list[dict]) -> list[dict]:
 
     duplicates = []
     for ingredient, meds in ingredient_to_meds.items():
-        if len(meds) < 2:
+        unique_meds = _dedupe_products(meds)
+        if len(unique_meds) < 2:
             continue
-        display_names = [m.get("input_name") or m.get("generic_name") or "unknown" for m in meds]
+        display_names = [_display_name(m) for m in unique_meds]
         duplicates.append({
             "active_ingredient": ingredient,
             "severity": "high",
@@ -78,7 +106,7 @@ def find_duplicate_active_ingredients(medications: list[dict]) -> list[dict]:
                     "generic_name": m.get("generic_name", ""),
                     "dosage_mg": m.get("dosage_mg"),
                 }
-                for m in meds
+                for m in unique_meds
             ],
             "message": (
                 f"{_join_names(display_names)} all contain {ingredient}. "
