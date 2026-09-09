@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { ShieldMark } from "./icons.jsx";
+import { ShieldMark, SearchIcon } from "./icons.jsx";
 import "./TopNav.css";
 
 export default function TopNav() {
@@ -7,11 +7,8 @@ export default function TopNav() {
     <header className="top-nav">
       <div className="top-nav__inner">
         <NavLink to="/" className="top-nav__brand">
-          <ShieldMark />
-          <span>
-            MedGuard
-            <small>Medicine safety check</small>
-          </span>
+          <ShieldMark size={30} />
+          <span>MedGuard</span>
         </NavLink>
 
         <nav className="top-nav__links" aria-label="Main">
@@ -22,7 +19,7 @@ export default function TopNav() {
               "top-nav__link" + (isActive ? " top-nav__link--active" : "")
             }
           >
-            Home
+            Check
           </NavLink>
           <NavLink
             to="/results"
@@ -33,6 +30,10 @@ export default function TopNav() {
             Results
           </NavLink>
         </nav>
+
+        <a href="#search" className="top-nav__search" aria-label="Search by medicine name">
+          <SearchIcon />
+        </a>
       </div>
     </header>
   );

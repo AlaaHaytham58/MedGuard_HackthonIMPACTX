@@ -76,6 +76,20 @@ const asprinWarfarinPair = {
   ],
 };
 
+// The box combinations the current mock data can actually answer. Anything
+// else must reach the honest "not enough data" path rather than borrowing
+// another pair's verdict (PRODUCT.md: fail visibly, never silently).
+const answerablePairs = [
+  { boxes: ["brufen", "marevan"], report: dangerPair },
+  { boxes: ["concor", "panadol"], report: safePair },
+];
+
+export function resolveReport(selectedIds) {
+  const key = selectedIds.slice().sort().join("+");
+  const match = answerablePairs.find((pair) => pair.boxes.join("+") === key);
+  return match ? match.report : null;
+}
+
 // The 2-3 mock previous searches the history panel is pre-seeded with.
 export const initialHistory = [
   { id: "h1", checkedLabel: "2 hours ago", ...dangerPair },
