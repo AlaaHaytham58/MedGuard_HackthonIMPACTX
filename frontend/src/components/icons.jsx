@@ -8,13 +8,13 @@ const base = {
   strokeLinejoin: "round",
 };
 
-export function ShieldMark({ size = 28 }) {
+export function ShieldMark({ size = 28, crossColor = "var(--cyan)" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
       <path fill="currentColor" d="M16 2 5 6.4v8.2c0 7.6 4.7 13.6 11 15.4 6.3-1.8 11-7.8 11-15.4V6.4z" />
       <path
         fill="none"
-        stroke="var(--navy-50)"
+        stroke={crossColor}
         strokeWidth="2.4"
         strokeLinecap="round"
         d="M16 10.2v11.6M10.2 16h11.6"
@@ -23,20 +23,43 @@ export function ShieldMark({ size = 28 }) {
   );
 }
 
-export function UploadCloudIcon(props) {
+export function ScanFrameIcon(props) {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" {...base} {...props}>
-      <path d="M8.5 20.5h-1a4.5 4.5 0 0 1-.6-8.96A5.5 5.5 0 0 1 17.7 9.2a4.25 4.25 0 0 1 1.3 8.3" />
-      <path d="M14 22v-8.5M14 13.5l-3 3M14 13.5l3 3" />
+    <svg width="60" height="52" viewBox="0 0 60 52" {...base} {...props}>
+      <path d="M8 18V9a2 2 0 0 1 2-2h9" />
+      <path d="M52 18V9a2 2 0 0 0-2-2h-9" />
+      <path d="M8 34v9a2 2 0 0 0 2 2h9" />
+      <path d="M52 34v9a2 2 0 0 1-2 2h-9" />
+      <rect x="23" y="17" width="14" height="19" rx="3" stroke="var(--navy-900)" />
+      <path d="M27 17v-4a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 33 13v4" stroke="var(--navy-900)" />
+      <path d="M23 26.5h14" stroke="var(--navy-900)" />
     </svg>
   );
 }
 
-export function CameraIcon(props) {
+export function ArrowRightIcon(props) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" {...base} {...props}>
-      <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l.9-1.5a1.5 1.5 0 0 1 1.29-.75h4.22a1.5 1.5 0 0 1 1.29.75l.9 1.5h2.2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z" />
-      <circle cx="12" cy="13" r="3.2" />
+    <svg width="24" height="24" viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M4 12h15" />
+      <path d="m14 7 5 5-5 5" />
+    </svg>
+  );
+}
+
+export function PrinterIcon(props) {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M6 9V3h12v6" />
+      <path d="M6 18H4.5A1.5 1.5 0 0 1 3 16.5v-6A1.5 1.5 0 0 1 4.5 9h15a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H18" />
+      <path d="M6 14h12v7H6z" />
+    </svg>
+  );
+}
+
+export function MenuIcon(props) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
 }

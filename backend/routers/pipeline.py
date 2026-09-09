@@ -1,7 +1,7 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from services.interaction import check_interactions
-from services.normalization import normalize_items
+from services.normalization import find_alternatives, normalize_items
 from services.vision import extract_drugs
 
 
@@ -28,10 +28,50 @@ def _report_drugs(medications: list[dict]) -> list[dict]:
     return report_drugs
 
 
-def _frontend_report(normalized: dict, interactions: dict) -> dict:
+def _alternatives_for(medications: list[dict], items: list[dict]) -> list[dict]:
+    """Same-ingredient substitutes for each identified medicine.
+
+    Looked up by the brand the vision step read rather than by `input_name`: the
+    catalog is keyed on trade names, while `input_name` is the whole OCR line
+    ("BRUFEN 400 mg Ibuprofen"), which matches nothing.
+    """
+    brand_by_raw_text = {
+        item.get("raw_text") or "": item.get("drug_name_guess") or ""
+        for item in items
+        if isinstance(item, dict)
+    }
+
+    groups = []
+    for medication in medications:
+        input_name = medication.get("input_name") or ""
+        brand = brand_by_raw_text.get(input_name) or input_name
+        if not brand:
+            continue
+        found = find_alternatives(brand, medication.get("dosage_mg"))
+        if found.get("alternatives"):
+            groups.append(found)
+    return groups
+
+
+def _frontend_report(normalized: dict, interactions: dict, alternatives: list[dict], mocked: bool = False) -> dict:
     medications = normalized.get("medications", [])
     raw_interactions = interactions.get("interactions", [])
     unresolved = normalized.get("unresolved", [])
+
+    # Everything the report UI needs beyond the headline summary: the duplicate
+    # active-ingredient hazard (which no interaction database flags), the
+    # substitutes, and the pairs the catalog had no record for — absence of a
+    # record is a real finding and has to be shown, not silently dropped.
+    detail = {
+        "mocked": mocked,
+        "alternatives": alternatives,
+        "duplicates": interactions.get("duplicate_active_ingredients", []),
+        "noRecordPairs": interactions.get("no_record_pairs", []),
+        "resolutions": interactions.get("resolutions", []),
+        "notice": interactions.get("notice"),
+        "catalogWarning": interactions.get("warning"),
+        "medications": medications,
+    }
 
     drugs = [
         {
@@ -97,7 +137,7 @@ def _frontend_report(normalized: dict, interactions: dict) -> dict:
             "interaction": combined_descriptions,
             "interactionPairs": interaction_pairs,
             "management": list(management_set),
-            "alternatives": [],
+            **detail,
             "checkedLabel": "Just now",
             "status": "interaction_found",
             "unresolved": unresolved,
@@ -119,7 +159,11 @@ def _frontend_report(normalized: dict, interactions: dict) -> dict:
         "interaction": interaction_text,
         "interactionPairs": [],
         "management": ["Ask a doctor or pharmacist before taking these medicines together."],
+<<<<<<< HEAD
+        **detail,
+=======
         "alternatives": [],
+>>>>>>> 5b7e5895d4348098b21c343711f0ffc509c9b521
         "checkedLabel": "Just now",
         "status": status,
         "unresolved": unresolved,
@@ -167,6 +211,7 @@ async def pipeline(images: list[UploadFile] = File(...)) -> dict:
         extracted = extract_drugs(image_bytes_list)
         normalized = normalize_items(extracted.get("items", []))
         interactions = check_interactions(normalized["medications"])
+        alternatives = _alternatives_for(normalized["medications"], extracted.get("items", []))
     except Exception as exc:
         raise HTTPException(
             status_code=503,
@@ -178,4 +223,4 @@ async def pipeline(images: list[UploadFile] = File(...)) -> dict:
             },
         ) from exc
 
-    return _frontend_report(normalized, interactions)
+    return _frontend_report(normalized, interactions, alternatives, bool(extracted.get("mocked")))

@@ -4,6 +4,69 @@
   flex-direction: column;
 }
 
+/* Shared layout and button primitives — used by both Home and Results */
+
+.shell {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.shell--narrow {
+  max-width: 900px;
+}
+
+.mg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 17px 30px;
+  border-radius: 3px;
+  border: 2px solid var(--navy-900);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.mg-btn--solid {
+  background: var(--navy-900);
+  color: var(--surface);
+}
+
+.mg-btn--outline {
+  background: transparent;
+  color: var(--navy-900);
+}
+
+.mg-btn--block {
+  width: 100%;
+}
+
+.mg-btn:hover:not(:disabled) {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--navy-900);
+}
+
+.mg-btn:disabled {
+  cursor: not-allowed;
+  background: var(--bg);
+  border-color: var(--border);
+  color: #9aacc2;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 0 20px;
+  }
+}
+
 .spinner-icon {
   animation: spin 0.9s linear infinite;
 }

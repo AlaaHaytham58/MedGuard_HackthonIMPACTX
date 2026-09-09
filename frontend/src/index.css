@@ -12,6 +12,11 @@
   --navy-100: #dbe6f4;
   --navy-50: #eef3fa;
 
+  /* Interactive accent. Deliberately not green or red — those stay reserved
+     for verdicts, so the accent can never be mistaken for a safety signal. */
+  --cyan: #51eaea;
+  --cyan-soft: rgba(81, 234, 234, 0.35);
+
   /* Neutral ground */
   --bg: #f4f7fb;
   --surface: #ffffff;
@@ -46,6 +51,7 @@
   --shadow-card: 0 1px 2px rgba(11, 35, 64, 0.06), 0 8px 24px -12px rgba(11, 35, 64, 0.18);
 
   --font-body: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Crimson Text", Georgia, serif;
 
   font-family: var(--font-body);
   font-synthesis: none;
