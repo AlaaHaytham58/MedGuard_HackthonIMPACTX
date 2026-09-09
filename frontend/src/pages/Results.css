@@ -54,6 +54,12 @@
   color: var(--green-ink);
 }
 
+.verdict--unknown {
+  background: var(--navy-50);
+  border-color: var(--navy-200);
+  color: var(--navy-900);
+}
+
 .verdict svg {
   flex-shrink: 0;
 }
@@ -64,6 +70,10 @@
 
 .verdict--safe svg {
   color: var(--green-700);
+}
+
+.verdict--unknown svg {
+  color: var(--navy-600);
 }
 
 .verdict__headline {
@@ -95,6 +105,34 @@
   color: var(--ink);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.interaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.interaction-item {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.interaction-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.interaction-item__title {
+  color: var(--navy-900);
+  font-weight: 800;
+}
+
+.interaction-item__severity {
+  color: var(--red-700);
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin: 3px 0 8px;
 }
 
 .ingredient-list {

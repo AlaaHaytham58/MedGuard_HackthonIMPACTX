@@ -21,11 +21,31 @@ app.add_middleware(
 )
 
 app.include_router(extract_router)
+app.include_router(check_router)
 app.include_router(ddinter_router)
 app.include_router(normalize_router)
 app.include_router(pipeline_router)
 
 
+_default_openapi = app.openapi
+
+
+def openapi_with_file_arrays() -> dict:
+    schema = _default_openapi()
+    body = schema.get("components", {}).get("schemas", {}).get("Body_pipeline_pipeline_post", {})
+    images = body.get("properties", {}).get("images", {})
+    if "items" in images:
+        images["items"] = {"type": "string", "format": "binary"}
+    return schema
+
+
+app.openapi = openapi_with_file_arrays
+
+
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok"}
+
+@app.get("/")
+def read_root():
+    return {"status": "MedGuard API is running!"}

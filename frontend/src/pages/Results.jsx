@@ -10,6 +10,7 @@ export default function Results() {
   const { history } = useHistory();
   const report = history.find((entry) => entry.id === id) ?? history[0];
   const isSafe = report.verdict === "safe";
+  const isUnknown = report.verdict === "unknown";
 
   return (
     <div className="page">
@@ -26,7 +27,7 @@ export default function Results() {
 
         <section
           className={
-            "verdict verdict--" + (isSafe ? "safe" : "danger")
+            "verdict verdict--" + (isSafe ? "safe" : isUnknown ? "unknown" : "danger")
           }
           aria-live="polite"
         >
@@ -55,7 +56,21 @@ export default function Results() {
 
           <section className="panel">
             <h2 className="panel__heading">Why</h2>
-            <p className="report-text">{report.interaction}</p>
+            {report.interactionPairs?.length ? (
+              <div className="interaction-list">
+                {report.interactionPairs.map((pair) => (
+                  <article className="interaction-item" key={`${pair.drug_a}-${pair.drug_b}`}>
+                    <p className="interaction-item__title">
+                      {pair.drug_a} + {pair.drug_b}
+                    </p>
+                    <p className="interaction-item__severity">{pair.severity} interaction</p>
+                    <p className="report-text">{pair.description}</p>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <p className="report-text">{report.interaction}</p>
+            )}
           </section>
 
           <section className="panel">
