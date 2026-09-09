@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TopNav from "../components/TopNav.jsx";
 import { useHistory } from "../state/HistoryContext.jsx";
-import { dangerPair, safePair } from "../data/reports.js";
+import { analyzePhotos } from "../api/client.js";
 import {
   UploadCloudIcon,
   CameraIcon,
@@ -24,12 +24,13 @@ export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchError, setSearchError] = useState("");
+  const [requestError, setRequestError] = useState("");
   const [submitting, setSubmitting] = useState(null); // null | "photo" | "search"
 
   function handleFiles(fileList) {
-    const file = fileList?.[0];
-    if (!file) return;
-    setPhoto({ name: file.name, url: URL.createObjectURL(file) });
+    const files = Array.from(fileList || []).slice(0, 4);
+    if (!files.length) return;
+    setPhoto({ files, name: files.map((file) => file.name).join(", "), url: URL.createObjectURL(files[0]) });
   }
 
   function handleDrop(event) {
@@ -38,17 +39,18 @@ export default function Home() {
     handleFiles(event.dataTransfer.files);
   }
 
-  function goToResults(kind, template) {
-    setSubmitting(kind);
-    window.setTimeout(() => {
-      const id = recordCheck(template);
-      navigate(`/results/${id}`);
-    }, 1100);
-  }
-
-  function handleCheckPhoto() {
+  async function handleCheckPhoto() {
     if (!photo || submitting) return;
-    goToResults("photo", dangerPair);
+    setSubmitting("photo");
+    setRequestError("");
+    try {
+      const report = await analyzePhotos(photo.files);
+      const id = recordCheck(report);
+      navigate(`/results/${id}`);
+    } catch (error) {
+      setRequestError(error.message || "Could not analyze the photo.");
+      setSubmitting(null);
+    }
   }
 
   function handleSearchSubmit(event) {
@@ -59,7 +61,7 @@ export default function Home() {
       return;
     }
     setSearchError("");
-    goToResults("search", safePair);
+    setSearchError("Search integration is not connected yet. Upload a photo to check medicines.");
   }
 
   const busy = Boolean(submitting);
@@ -129,6 +131,7 @@ export default function Home() {
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
+                multiple
                 className="visually-hidden"
                 onChange={(event) => handleFiles(event.target.files)}
               />
@@ -137,6 +140,7 @@ export default function Home() {
                 type="file"
                 accept="image/*"
                 capture="environment"
+                multiple
                 className="visually-hidden"
                 onChange={(event) => handleFiles(event.target.files)}
               />
@@ -219,6 +223,7 @@ export default function Home() {
               {searchError}
             </p>
           )}
+          {requestError && <p className="field-error">{requestError}</p>}
         </section>
       </main>
     </div>
