@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TopNav from "../components/TopNav.jsx";
 import { useHistory } from "../state/HistoryContext.jsx";
-import { dangerPair, resolveReport, safePair } from "../data/reports.js";
 import { boxes } from "../data/boxes.js";
+import { checkMedications, findAlternatives, runPipeline } from "../api/client.js";
+import { reportFromCheck, reportFromPipeline } from "../api/report.js";
 import {
   ScanFrameIcon,
   SearchIcon,
@@ -49,21 +50,37 @@ export default function Home() {
   const fileInputRef = useRef(null);
   const revealRoot = useScrollReveal();
 
-  const [photo, setPhoto] = useState(null);
+  const MAX_PHOTOS = 4;
+
+  const [photos, setPhotos] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [searchError, setSearchError] = useState("");
   const [submitting, setSubmitting] = useState(null);
+  const [failure, setFailure] = useState("");
 
   const busy = Boolean(submitting);
   const chosen = boxes.filter((box) => selectedIds.includes(box.id));
-  const pairReport = selectedIds.length === 2 ? resolveReport(selectedIds) : null;
+  const canCheckBoxes = chosen.length >= 2;
 
   function handleFiles(fileList) {
-    const file = fileList?.[0];
-    if (!file) return;
-    setPhoto({ name: file.name, url: URL.createObjectURL(file) });
+    const incoming = Array.from(fileList ?? []);
+    if (incoming.length === 0) return;
+    setFailure("");
+    setPhotos((previous) =>
+      [...previous, ...incoming.map((file) => ({ file, url: URL.createObjectURL(file) }))].slice(
+        0,
+        MAX_PHOTOS
+      )
+    );
+  }
+
+  function removePhoto(index) {
+    setPhotos((previous) => {
+      URL.revokeObjectURL(previous[index].url);
+      return previous.filter((_, position) => position !== index);
+    });
   }
 
   function handleDrop(event) {
@@ -72,39 +89,104 @@ export default function Home() {
     handleFiles(event.dataTransfer.files);
   }
 
-  function goToResults(kind, template) {
-    setSubmitting(kind);
-    window.setTimeout(() => {
-      const id = recordCheck(template);
-      navigate(`/results/${id}`);
-    }, 1100);
-  }
-
   function toggleBox(id) {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((entry) => entry !== id) : [...prev, id]
+    setFailure("");
+    setSelectedIds((previous) =>
+      previous.includes(id) ? previous.filter((entry) => entry !== id) : [...previous, id]
     );
   }
 
-  function handleCheckPhoto() {
-    if (!photo || busy) return;
-    goToResults("photo", dangerPair);
+  async function handleCheckPhotos() {
+    if (photos.length === 0 || busy) return;
+    setSubmitting("photo");
+    setFailure("");
+    try {
+      const data = await runPipeline(photos.map((photo) => photo.file));
+      const report = reportFromPipeline(data);
+      if (report.medications.length === 0) {
+        setFailure(
+          "We could not read a medicine name from those photos. Try a clearer, closer shot of the box front."
+        );
+        return;
+      }
+      navigate(`/results/${recordCheck(report)}`);
+    } catch (error) {
+      setFailure(error.message);
+    } finally {
+      setSubmitting(null);
+    }
   }
 
-  function handleCheckBoxes() {
-    if (!pairReport || busy) return;
-    goToResults("boxes", pairReport);
+  async function handleCheckBoxes() {
+    if (!canCheckBoxes || busy) return;
+    setSubmitting("boxes");
+    setFailure("");
+
+    const medications = chosen.map((box) => ({
+      input_name: box.brand,
+      generic_name: box.ingredient,
+      dosage_mg: box.dosageMg ?? null,
+      match_method: "picker",
+      match_confidence: 1,
+    }));
+
+    try {
+      const [check, ...alternatives] = await Promise.all([
+        checkMedications(medications),
+        ...chosen.map((box) =>
+          findAlternatives(box.brand, box.dosageMg).catch(() => null)
+        ),
+      ]);
+
+      const report = reportFromCheck(check, {
+        medications: chosen.map((box) => ({
+          inputName: box.brand,
+          ingredient: box.ingredient,
+          dosageMg: box.dosageMg ?? null,
+          image: box.image,
+          matchMethod: "picker",
+        })),
+        alternatives: alternatives.filter(Boolean),
+      });
+
+      navigate(`/results/${recordCheck(report)}`);
+    } catch (error) {
+      setFailure(error.message);
+    } finally {
+      setSubmitting(null);
+    }
   }
 
-  function handleSearchSubmit(event) {
+  async function handleSearchSubmit(event) {
     event.preventDefault();
     if (busy) return;
-    if (!searchText.trim()) {
+
+    const query = searchText.trim();
+    if (!query) {
       setSearchError("Type a medicine name to continue.");
       return;
     }
+
     setSearchError("");
-    goToResults("search", safePair);
+    setSubmitting("search");
+    setFailure("");
+    try {
+      const found = await findAlternatives(query, null);
+      if (!found.generic_name) {
+        setSearchError(
+          found.warning || "That medicine is not in the catalogue. Try the brand name on the box."
+        );
+        return;
+      }
+      setSearchError("");
+      setFailure(
+        `${query} contains ${found.generic_name}. Add it from the boxes above, or photograph it, to check it against another medicine.`
+      );
+    } catch (error) {
+      setSearchError(error.message);
+    } finally {
+      setSubmitting(null);
+    }
   }
 
   return (

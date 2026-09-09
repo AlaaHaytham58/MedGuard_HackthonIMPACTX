@@ -1,55 +1,41 @@
-import { createContext, useCallback, useContext, useState } from "react";
-import { initialHistory } from "../data/reports.js";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 
 const HistoryContext = createContext(null);
 
 function pairKey(report) {
-  return report.drugs
-    .map((drug) => drug.brand)
+  return report.medications
+    .map((medication) => medication.ingredient || medication.inputName)
     .slice()
     .sort()
     .join("+");
 }
 
-// Session-only, in-memory history — React state, never localStorage. Resets
-// on reload, matches PRODUCT.md's current-milestone scope (no accounts, no
-// persistence).
+// Session-only, in-memory — React state, never localStorage. Resets on reload,
+// matching PRODUCT.md's current-milestone scope (no accounts, no persistence).
+// Starts empty: seeding it with invented past checks would be fabricated data.
 export function HistoryProvider({ children }) {
-  const [history, setHistory] = useState(initialHistory);
+  const [history, setHistory] = useState([]);
 
-  const recordCheck = useCallback((template) => {
-    const key = pairKey(template);
-    let resultId = null;
+  const recordCheck = useCallback((report) => {
+    const key = pairKey(report);
 
-    setHistory((prev) => {
-      const existingIndex = prev.findIndex((entry) => pairKey(entry) === key);
-
-      if (existingIndex !== -1) {
-        const existing = prev[existingIndex];
-        resultId = existing.id;
-        const superseded = { ...existing, checkedLabel: "Just now" };
-        return [superseded, ...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)];
-      }
-
-      const id = `check-${Date.now()}`;
-      resultId = id;
-      return [{ ...template, id, checkedLabel: "Just now" }, ...prev];
+    setHistory((previous) => {
+      const withoutSameCombination = previous.filter((entry) => pairKey(entry) !== key);
+      return [report, ...withoutSameCombination].slice(0, 12);
     });
 
-    return resultId;
+    return report.id;
   }, []);
 
-  return (
-    <HistoryContext.Provider value={{ history, recordCheck }}>
-      {children}
-    </HistoryContext.Provider>
-  );
+  const value = useMemo(() => ({ history, recordCheck }), [history, recordCheck]);
+
+  return <HistoryContext.Provider value={value}>{children}</HistoryContext.Provider>;
 }
 
 export function useHistory() {
-  const ctx = useContext(HistoryContext);
-  if (!ctx) {
+  const context = useContext(HistoryContext);
+  if (!context) {
     throw new Error("useHistory must be used within a HistoryProvider");
   }
-  return ctx;
+  return context;
 }
