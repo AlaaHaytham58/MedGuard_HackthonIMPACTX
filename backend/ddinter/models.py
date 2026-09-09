@@ -50,6 +50,7 @@ class AlternativeDrug(BaseModel):
     id: int
     original_drug_id: int
     alternative_drug_id: int | None = None
+    alternative_drug: Drug | None = None
     information: str | None = None
     context: str | None = None
     pair_id: int | None = None

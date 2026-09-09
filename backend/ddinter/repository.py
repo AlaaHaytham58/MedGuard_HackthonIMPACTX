@@ -1,3 +1,4 @@
+import json
 import os
 import sqlite3
 from pathlib import Path
@@ -293,12 +294,21 @@ class Repository:
     def alternatives(self, drug_id: int, pair_id: int | None = None) -> list[AlternativeDrug]:
         if pair_id is not None:
             rows = self.connection.execute(
-                """SELECT id, original_drug_id, alternative_drug_id, NULL AS information,
-                          NULL AS context, pair_id, side, atc_code
-                   FROM ddinter_contextual_alternatives
-                   WHERE original_drug_id = ? AND pair_id = ? ORDER BY id""", (drug_id, pair_id)
+                """SELECT a.id, a.original_drug_id, a.alternative_drug_id,
+                          json_object('id', d.id, 'canonical_name', d.canonical_name,
+                                      'ddinter_id', d.ddinter_id, 'drugbank_id', d.drugbank_id)
+                              AS alternative_drug,
+                          NULL AS information, NULL AS context, a.pair_id, a.side, a.atc_code
+                   FROM ddinter_contextual_alternatives a
+                   JOIN ddinter_drugs d ON d.id = a.alternative_drug_id
+                   WHERE a.original_drug_id = ? AND a.pair_id = ? ORDER BY a.id""", (drug_id, pair_id)
             ).fetchall()
-            return [AlternativeDrug(**dict(row)) for row in rows]
+            alternatives = []
+            for row in rows:
+                values = dict(row)
+                values["alternative_drug"] = json.loads(values["alternative_drug"])
+                alternatives.append(AlternativeDrug(**values))
+            return alternatives
         rows = self.connection.execute(
             "SELECT * FROM ddinter_alternatives WHERE original_drug_id = ? ORDER BY id", (drug_id,)
         ).fetchall()
