@@ -1,7 +1,8 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
+from services.duplicates import find_duplicate_active_ingredients
 from services.interaction import check_interactions
-from services.normalization import normalize_items
+from services.normalization import find_alternatives, normalize_items
 from services.vision import extract_drugs
 
 
@@ -9,6 +10,29 @@ router = APIRouter()
 
 MAX_IMAGES = 4
 MAX_SIZE_BYTES = 8 * 1024 * 1024
+
+
+def _alternatives_for(medications: list[dict], items: list[dict]) -> list[dict]:
+    """Same-ingredient substitutes for each identified medicine.
+
+    Looked up by the brand the vision step read rather than by `input_name`: the
+    catalog is keyed on trade names, while `input_name` is the whole OCR line
+    ("BRUFEN 400 mg Ibuprofen"), which matches nothing.
+    """
+    brand_by_raw_text = {
+        item.get("raw_text") or "": item.get("drug_name_guess") or ""
+        for item in items
+        if isinstance(item, dict)
+    }
+
+    results = []
+    for medication in medications:
+        input_name = medication.get("input_name") or ""
+        brand = brand_by_raw_text.get(input_name) or input_name
+        if not brand:
+            continue
+        results.append(find_alternatives(brand, medication.get("dosage_mg")))
+    return results
 
 
 @router.post("/pipeline")
@@ -52,7 +76,10 @@ async def pipeline(images: list[UploadFile] = File(...)) -> dict:
     try:
         extracted = extract_drugs(image_bytes_list)
         normalized = normalize_items(extracted.get("items", []))
-        interactions = check_interactions(normalized["medications"])
+        medications = normalized["medications"]
+        interactions = check_interactions(medications)
+        duplicates = find_duplicate_active_ingredients(medications)
+        alternatives = _alternatives_for(medications, extracted.get("items", []))
     except Exception as exc:
         raise HTTPException(
             status_code=503,
@@ -68,4 +95,6 @@ async def pipeline(images: list[UploadFile] = File(...)) -> dict:
         "extracted": extracted,
         "normalized": normalized,
         "interactions": interactions,
+        "duplicates": duplicates,
+        "alternatives": alternatives,
     }

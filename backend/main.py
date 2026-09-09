@@ -21,6 +21,7 @@ app.add_middleware(
 )
 
 app.include_router(extract_router)
+app.include_router(check_router)
 app.include_router(ddinter_router)
 app.include_router(normalize_router)
 app.include_router(pipeline_router)
