@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 truststore.inject_into_ssl()
 
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-3.6-flash"
 
 EXTRACTION_PROMPT = """You are reading photo(s) of medication box(es)/strip(s).
 For each distinct medication you can identify, return an entry with:
@@ -38,6 +38,10 @@ class ExtractionResult(BaseModel):
 
 
 _client = None
+
+
+class GeminiQuotaExceeded(RuntimeError):
+    """Raised when Gemini refuses a request because the project quota is exhausted."""
 
 _MOCK_RESPONSE = {
     "items": [
@@ -73,30 +77,45 @@ def _get_client() -> genai.Client:
         api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
             raise RuntimeError("GEMINI_API_KEY environment variable is missing.")
-        _client = genai.Client(api_key=api_key)
+        _client = genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(
+                retry_options=types.HttpRetryOptions(attempts=1)
+            ),
+        )
     return _client
 
 
-def extract_drugs(image_bytes_list: list[bytes]) -> dict:
+def extract_drugs(image_bytes_list: list[bytes], mime_types: list[str] | None = None) -> dict:
     if os.getenv("MOCK_EXTRACT", "0") == "1":
         return json.loads(json.dumps(_MOCK_RESPONSE))
 
     client = _get_client()
 
-    parts = [
-        types.Part.from_bytes(data=data, mime_type="image/jpeg")
-        for data in image_bytes_list
-    ]
+    parts = []
+    for index, data in enumerate(image_bytes_list):
+        mime_type = (mime_types or [])[index] if mime_types and index < len(mime_types) else "image/jpeg"
+        if mime_type not in {"image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"}:
+            mime_type = "image/jpeg"
+        parts.append(types.Part.from_bytes(data=data, mime_type=mime_type))
     parts.append(EXTRACTION_PROMPT)
 
-    response = client.models.generate_content(
-        model=MODEL_NAME,
-        contents=parts,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-            response_schema=ExtractionResult,
-        ),
-    )
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=parts,
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=ExtractionResult,
+            ),
+        )
+    except Exception as exc:
+        provider_error = str(exc)
+        if "429" in provider_error or "RESOURCE_EXHAUSTED" in provider_error or "quota" in provider_error.lower():
+            raise GeminiQuotaExceeded(
+                "The AI reading service has reached its request limit. Please try again later."
+            ) from exc
+        raise
 
     if response.parsed:
         return response.parsed.model_dump()

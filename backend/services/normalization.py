@@ -10,6 +10,13 @@ from urllib.request import urlopen
 BRANDS_PATH = Path(__file__).parents[1] / "data" / "egyptian_brands.json"
 CATALOG_PATH = Path(__file__).parents[1] / "data" / "eg_drugs.csv"
 RXNORM_URL = "https://rxnav.nlm.nih.gov/REST/rxcui.json?name="
+WARNING_FIELDS = (
+    "warning_pregnancy",
+    "warning_high_blood_pressure",
+    "warning_diabetes",
+    "warning_lactation",
+    "warning_heart",
+)
 
 CatalogRow = dict[str, Any]
 
@@ -33,6 +40,11 @@ def normalize_key(value: object) -> str:
     if value is None:
         return ""
     return re.sub(r"[^a-z0-9]+", " ", str(value).lower()).strip()
+
+
+def _catalog_name_key(value: object) -> str:
+    """Normalize a catalog trade name without parenthetical spelling aliases."""
+    return normalize_key(re.sub(r"\([^)]*\)", "", str(value or "")))
 
 
 def parse_dosage_mg(value: object) -> float | None:
@@ -99,6 +111,7 @@ def _load_catalog() -> tuple[CatalogRow, ...]:
                 "trade_name": _catalog_trade_name(row.get("name", "")),
                 "form": (row.get("form") or "").strip(),
                 "barcode": (row.get("barcode") or "").strip(),
+                **{field: int(row.get(field) or 0) for field in WARNING_FIELDS},
             }
             for row in rows
             if (row.get("name") or "").strip()
@@ -294,7 +307,7 @@ def normalize_items(items: list[dict] | None) -> dict:
         input_name = item.get("raw_text") or item.get("drug_name_guess") or ""
         drug_name = item.get("drug_name_guess") or input_name
         
-        if _is_ocr_noise(input_name) or _is_ocr_noise(drug_name):
+        if (input_name or drug_name) and (_is_ocr_noise(input_name) or _is_ocr_noise(drug_name)):
             continue
             
         dosage_mg = parse_dosage_mg(item.get("dosage_guess") or input_name)
@@ -302,13 +315,18 @@ def normalize_items(items: list[dict] | None) -> dict:
         brand = brands.get(lookup_name)
         catalog_matches = [
             row for row in catalog
-            if normalize_key(row["trade_name"]) == lookup_name
-            or normalize_key(row["trade_name"]).startswith(lookup_name + " ")
+            if _catalog_name_key(row["trade_name"]) == lookup_name
+            or _catalog_name_key(row["trade_name"]).startswith(lookup_name + " ")
         ]
 
         matched_med = None
 
         if brand:
+            warning_flags = (
+                {field: catalog_matches[0].get(field, 0) for field in WARNING_FIELDS}
+                if catalog_matches
+                else {}
+            )
             matched_med = {
                 "input_name": input_name,
                 "generic_name": brand["generic_name"],
@@ -318,6 +336,7 @@ def normalize_items(items: list[dict] | None) -> dict:
                 "match_confidence": 1.0,
                 "explanation_en": "",
                 "explanation_ar": "",
+                **warning_flags,
             }
         elif catalog_matches:
             catalog_match = catalog_matches[0]
@@ -330,6 +349,7 @@ def normalize_items(items: list[dict] | None) -> dict:
                 "match_confidence": min(float(item.get("confidence", 0.8)), 0.95),
                 "explanation_en": "",
                 "explanation_ar": "",
+                **{field: catalog_match.get(field, 0) for field in WARNING_FIELDS},
             }
         else:
             rxnorm_match = _rxnorm_lookup(lookup_name) if lookup_name else None

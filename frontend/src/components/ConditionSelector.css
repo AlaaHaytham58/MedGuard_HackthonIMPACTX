@@ -1,0 +1,95 @@
+.condition-selector {
+  margin: 24px 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface-sunken);
+  text-align: start;
+}
+
+.condition-selector__intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.condition-selector__eyebrow {
+  color: var(--navy-600);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.condition-selector__title {
+  margin-top: 3px;
+  font-size: 1.08rem;
+}
+
+.condition-selector__hint {
+  margin-top: 4px;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.condition-selector__optional {
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.condition-selector__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.condition-chip {
+  min-height: 76px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  padding: 9px 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--navy-900);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.condition-chip:hover,
+.condition-chip--selected {
+  border-color: var(--navy-600);
+  background: var(--navy-900);
+  color: var(--ink-on-navy);
+}
+
+.condition-chip__icon {
+  color: var(--cyan);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.condition-chip__check {
+  min-height: 1em;
+  color: var(--cyan);
+  font-size: 0.75rem;
+}
+
+.condition-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+@media (max-width: 720px) {
+  .condition-selector__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

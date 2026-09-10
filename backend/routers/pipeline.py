@@ -1,14 +1,38 @@
-from fastapi import APIRouter, File, HTTPException, UploadFile
+import json
+
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 
 from services.interaction import check_interactions
 from services.normalization import find_alternatives, normalize_items
-from services.vision import extract_drugs
+from services.vision import GeminiQuotaExceeded, extract_drugs
 
 
 router = APIRouter()
 
 MAX_IMAGES = 4
 MAX_SIZE_BYTES = 8 * 1024 * 1024
+SUPPORTED_CONDITIONS = {
+    "pregnancy",
+    "high_blood_pressure",
+    "diabetes",
+    "lactation",
+    "heart",
+}
+
+
+def _check_conditions(medications: list[dict], user_conditions: list[str]) -> list[dict]:
+    warnings = []
+    conditions = [condition for condition in user_conditions if condition in SUPPORTED_CONDITIONS]
+    for medication in medications:
+        drug_name = medication.get("input_name") or medication.get("generic_name") or "Unknown medicine"
+        for condition in conditions:
+            if medication.get(f"warning_{condition}") == 1:
+                warnings.append({
+                    "drug": drug_name,
+                    "condition": condition,
+                    "message": "Requires caution for this condition.",
+                })
+    return warnings
 
 
 def _report_drugs(medications: list[dict]) -> list[dict]:
@@ -53,7 +77,13 @@ def _alternatives_for(medications: list[dict], items: list[dict]) -> list[dict]:
     return groups
 
 
-def _frontend_report(normalized: dict, interactions: dict, alternatives: list[dict], mocked: bool = False) -> dict:
+def _frontend_report(
+    normalized: dict,
+    interactions: dict,
+    alternatives: list[dict],
+    condition_warnings: list[dict] | None = None,
+    mocked: bool = False,
+) -> dict:
     medications = normalized.get("medications", [])
     raw_interactions = interactions.get("interactions", [])
     unresolved = normalized.get("unresolved", [])
@@ -71,6 +101,7 @@ def _frontend_report(normalized: dict, interactions: dict, alternatives: list[di
         "notice": interactions.get("notice"),
         "catalogWarning": interactions.get("warning"),
         "medications": medications,
+        "conditionWarnings": condition_warnings or [],
     }
 
     drugs = [
@@ -164,50 +195,94 @@ def _frontend_report(normalized: dict, interactions: dict, alternatives: list[di
         "status": status,
         "unresolved": unresolved,
     }
-
 @router.post("/pipeline")
-async def pipeline(images: list[UploadFile] = File(...)) -> dict:
-    if not images or len(images) > MAX_IMAGES:
+async def pipeline(
+    images: list[UploadFile] = File(default=[]),
+    conditions: str = Form("[]"),
+    medicine_name: str = Form(""),
+    medicine_names: str = Form("[]"),
+    names: str = Form("[]"),  # Added fallback for 'names' key
+) -> dict:
+    medicine_name = medicine_name.strip()
+    
+    # 1. Fallback between 'names' and 'medicine_names'
+    raw_names_input = names if names != "[]" else medicine_names
+
+    try:
+        parsed_medicine_names = json.loads(raw_names_input)
+    except json.JSONDecodeError:
+        parsed_medicine_names = []
+
+    if not isinstance(parsed_medicine_names, list):
+        parsed_medicine_names = []
+
+    parsed_medicine_names = [str(name).strip() for name in parsed_medicine_names if str(name).strip()]
+
+    if medicine_name and medicine_name not in parsed_medicine_names:
+        parsed_medicine_names.insert(0, medicine_name)
+
+    # Filter out empty files if frontend sends an empty File array item
+    valid_images = [img for img in (images or []) if img and getattr(img, "filename", None)]
+
+    # 2. Updated error check with a clear error code
+    if not valid_images and not parsed_medicine_names:
         raise HTTPException(
             status_code=400,
             detail={
                 "error": True,
-                "code": "BAD_IMAGE_COUNT",
-                "message": f"Send 1-{MAX_IMAGES} images",
+                "code": "NO_INPUT_PROVIDED",
+                "message": "Please enter a medicine name or upload an image.",
                 "details": {},
             },
         )
 
-    image_bytes_list = []
-    for image in images:
-        content = await image.read()
-        if not content:
-            raise HTTPException(
-                status_code=400,
-                detail={
-                    "error": True,
-                    "code": "EMPTY_IMAGE",
-                    "message": f"{image.filename} is empty",
-                    "details": {},
-                },
-            )
-        if len(content) > MAX_SIZE_BYTES:
-            raise HTTPException(
-                status_code=400,
-                detail={
-                    "error": True,
-                    "code": "IMAGE_TOO_LARGE",
-                    "message": f"{image.filename} exceeds 8MB",
-                    "details": {},
-                },
-            )
-        image_bytes_list.append(content)
-
     try:
-        extracted = extract_drugs(image_bytes_list)
+        parsed_conditions = json.loads(conditions)
+        if not isinstance(parsed_conditions, list):
+            raise ValueError("conditions must be a JSON array")
+
+        if parsed_medicine_names:
+            extracted = {
+                "items": [{
+                    "raw_text": name,
+                    "drug_name_guess": name,
+                    "dosage_guess": "",
+                    "confidence": 1.0,
+                } for name in parsed_medicine_names],
+                "image_quality_warnings": [],
+            }
+        else:
+            if len(valid_images) > MAX_IMAGES:
+                raise ValueError(f"Send 1-{MAX_IMAGES} images")
+
+            image_bytes_list = []
+            image_mime_types = []
+            for image in valid_images:
+                content = await image.read()
+                if not content:
+                    raise ValueError(f"{image.filename} is empty")
+                if len(content) > MAX_SIZE_BYTES:
+                    raise ValueError(f"{image.filename} exceeds 8MB")
+                image_bytes_list.append(content)
+                image_mime_types.append(image.content_type or "image/jpeg")
+
+            extracted = extract_drugs(image_bytes_list, image_mime_types)
+
         normalized = normalize_items(extracted.get("items", []))
         interactions = check_interactions(normalized["medications"])
         alternatives = _alternatives_for(normalized["medications"], extracted.get("items", []))
+        condition_warnings = _check_conditions(normalized["medications"], parsed_conditions)
+
+    except GeminiQuotaExceeded as exc:
+        raise HTTPException(
+            status_code=429,
+            detail={
+                "error": True,
+                "code": "GEMINI_QUOTA_EXCEEDED",
+                "message": str(exc),
+                "details": {},
+            },
+        ) from exc
     except Exception as exc:
         raise HTTPException(
             status_code=503,
@@ -219,4 +294,10 @@ async def pipeline(images: list[UploadFile] = File(...)) -> dict:
             },
         ) from exc
 
-    return _frontend_report(normalized, interactions, alternatives, bool(extracted.get("mocked")))
+    return _frontend_report(
+        normalized,
+        interactions,
+        alternatives,
+        condition_warnings,
+        bool(extracted.get("mocked")),
+    )

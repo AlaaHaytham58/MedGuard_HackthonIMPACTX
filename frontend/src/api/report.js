@@ -125,7 +125,7 @@ function deriveVerdict({ interactions, duplicates, status, catalogWarning }) {
   return VERDICT.NO_RECORD;
 }
 
-function assemble({ id, source, medications, unresolved, check, duplicates, alternatives, imageWarnings, mocked }) {
+function assemble({ id, source, medications, unresolved, check, duplicates, alternatives, conditionWarnings, imageWarnings, mocked }) {
   const names = displayNames(check.resolutions);
   const interactions = (check.interactions ?? []).map((pair) => mapPair(pair, names));
   const mappedDuplicates = (duplicates ?? []).map(mapDuplicate);
@@ -152,6 +152,7 @@ function assemble({ id, source, medications, unresolved, check, duplicates, alte
     noRecordPairs: (check.no_record_pairs ?? []).map((pair) => mapPair(pair, names)),
     duplicates: mappedDuplicates,
     alternatives: (alternatives ?? []).map(mapAlternativeGroup).filter((group) => group.options.length > 0),
+    conditionWarnings: conditionWarnings ?? [],
     comparisons: check.comparisons ?? 0,
     notice: check.notice ?? null,
     catalogWarning,
@@ -203,6 +204,7 @@ export function reportFromPipeline(data) {
     check,
     duplicates: data.duplicates ?? data.interactions?.duplicate_active_ingredients,
     alternatives: data.alternatives,
+    conditionWarnings: data.conditionWarnings,
     imageWarnings: data.extracted?.image_quality_warnings ?? [],
     mocked: data.mocked ?? data.extracted?.mocked,
   });
@@ -218,5 +220,6 @@ export function reportFromCheck(check, { medications, alternatives }) {
     check,
     duplicates: check.duplicate_active_ingredients,
     alternatives,
+    conditionWarnings: check.condition_warnings,
   });
 }

@@ -25,6 +25,41 @@
   margin: 0 auto 28px;
 }
 
+.condition-warning-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.condition-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--red-border);
+  border-inline-start: 5px solid var(--red-700);
+  background: var(--red-100);
+  color: var(--red-ink);
+}
+
+.condition-warning > svg {
+  flex-shrink: 0;
+  color: var(--red-700);
+}
+
+.condition-warning__title {
+  margin-bottom: 3px;
+  color: var(--red-800);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.condition-warning__body {
+  font-size: 0.96rem;
+}
+
 /* ---------- Mock-data banner ---------- */
 
 /* Deliberately loud: the mock returns real, plausible drug names, so anything

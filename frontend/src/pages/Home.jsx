@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TopNav from "../components/TopNav.jsx";
+import ConditionSelector from "../components/ConditionSelector.jsx";
 import { useHistory } from "../state/HistoryContext.jsx";
+import { useLanguage } from "../state/LanguageContext.jsx";
 import { boxes } from "../data/boxes.js";
 import { checkMedications, findAlternatives, runPipeline } from "../api/client.js";
 import { reportFromCheck, reportFromPipeline } from "../api/report.js";
@@ -48,13 +50,16 @@ export default function Home() {
   const { recordCheck } = useHistory();
   const fileInputRef = useRef(null);
   const revealRoot = useScrollReveal();
+  const { t, isArabic } = useLanguage();
 
   const MAX_PHOTOS = 4;
 
   const [photos, setPhotos] = useState([]);
+  const [selectedConditions, setSelectedConditions] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [searchMedicines, setSearchMedicines] = useState([""]);
+  const [activeSearchMedicine, setActiveSearchMedicine] = useState(0);
   const [searchError, setSearchError] = useState("");
   const [submitting, setSubmitting] = useState(null);
   const [failure, setFailure] = useState("");
@@ -62,6 +67,7 @@ export default function Home() {
   const busy = Boolean(submitting);
   const chosen = boxes.filter((box) => selectedIds.includes(box.id));
   const canCheckBoxes = chosen.length >= 2;
+  const currentSearchText = searchMedicines[activeSearchMedicine] ?? "";
 
   function handleFiles(fileList) {
     const incoming = Array.from(fileList ?? []);
@@ -100,7 +106,7 @@ export default function Home() {
     setSubmitting("photo");
     setFailure("");
     try {
-      const data = await runPipeline(photos.map((photo) => photo.file));
+      const data = await runPipeline(photos.map((photo) => photo.file), selectedConditions);
       const report = reportFromPipeline(data);
       if (report.medications.length === 0) {
         setFailure(
@@ -160,8 +166,9 @@ export default function Home() {
     event.preventDefault();
     if (busy) return;
 
-    const query = searchText.trim();
-    if (!query) {
+    const typedMedicines = searchMedicines.map((medicine) => medicine.trim()).filter(Boolean);
+    const uniqueMedicines = [...new Set(typedMedicines)];
+    if (uniqueMedicines.length === 0) {
       setSearchError("Type a medicine name to continue.");
       return;
     }
@@ -170,17 +177,13 @@ export default function Home() {
     setSubmitting("search");
     setFailure("");
     try {
-      const found = await findAlternatives(query, null);
-      if (!found.generic_name) {
-        setSearchError(
-          found.warning || "That medicine is not in the catalogue. Try the brand name on the box."
-        );
+      const data = await runPipeline([], selectedConditions, "", uniqueMedicines);
+      const report = reportFromPipeline(data);
+      if (report.medications.length === 0) {
+        setSearchError("That medicine is not in the catalogue. Try the brand name on the box.");
         return;
       }
-      setSearchError("");
-      setFailure(
-        `${query} contains ${found.generic_name}. Add it from the boxes above, or photograph it, to check it against another medicine.`
-      );
+      navigate(`/results/${recordCheck(report)}`);
     } catch (error) {
       setSearchError(error.message);
     } finally {
@@ -197,19 +200,16 @@ export default function Home() {
         <section className="hero">
           <div className="hero__inner">
             <div className="hero__copy" data-reveal>
-              <p className="kicker kicker--onDark">Built for Egyptian medicine boxes</p>
-              <h1 className="hero__title">Know if your medicines are safe together</h1>
+              <p className="kicker kicker--onDark">{t("Built for Egyptian medicine boxes")}</p>
+              <h1 className="hero__title">{t("Know if your medicines are safe together")}</h1>
               <p className="hero__lede">
-                Photograph the boxes you have at home. MedGuard reads the active
-                ingredient off each one and checks the combination against a verified
-                medical database.
+                {t("Photograph the boxes you have at home. MedGuard reads the active ingredient off each one and checks the combination against a verified medical database.")}
               </p>
               <div className="hero__note">
                 <span className="hero__rule" />
-                <p>No account. No cost. Works with brand names.</p>
+                <p>{t("No account. No cost. Works with brand names.")}</p>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -222,10 +222,9 @@ export default function Home() {
                   <span className="step__num">1</span>
                   <span className="step__rule" />
                 </div>
-                <h3 className="step__title">You photograph the boxes</h3>
+                <h3 className="step__title">{t("You photograph the boxes")}</h3>
                 <p className="step__body">
-                  Egyptian brand names are fine — Brufen, Concor, Marevan. You never
-                  need to know the generic name.
+                  {t("Egyptian brand names are fine — Brufen, Concor, Marevan. You never need to know the generic name.")}
                 </p>
               </li>
 
@@ -234,10 +233,9 @@ export default function Home() {
                   <span className="step__num">2</span>
                   <span className="step__rule" />
                 </div>
-                <h3 className="step__title">AI reads the ingredient</h3>
+                <h3 className="step__title">{t("AI reads the ingredient")}</h3>
                 <p className="step__body">
-                  Vision pulls the brand name off the packaging and maps it to its active
-                  ingredient. That is all the AI does.
+                  {t("Vision pulls the brand name off the packaging and maps it to its active ingredient. That is all the AI does.")}
                 </p>
               </li>
 
@@ -246,10 +244,9 @@ export default function Home() {
                   <span className="step__num">3</span>
                   <span className="step__rule" />
                 </div>
-                <h3 className="step__title">A database gives the verdict</h3>
+                <h3 className="step__title">{t("A database gives the verdict")}</h3>
                 <p className="step__body">
-                  DDInter 2.0 decides whether the combination is dangerous. Never the AI —
-                  that boundary is the whole point.
+                  {t("DDInter 2.0 decides whether the combination is dangerous. Never the AI — that boundary is the whole point.")}
                 </p>
               </li>
             </ol>
@@ -260,7 +257,13 @@ export default function Home() {
         <section className="starter" id="start">
           <div className="shell">
             <div className="upload-card" data-reveal>
-              <h2 className="upload-card__heading">Start your check</h2>
+              <h2 className="upload-card__heading">{t("Start your check")}</h2>
+
+              <ConditionSelector
+                selectedConditions={selectedConditions}
+                onChange={setSelectedConditions}
+                disabled={busy}
+              />
 
               <div
                 className={"dropzone" + (isDragging ? " dropzone--active" : "")}
@@ -273,7 +276,7 @@ export default function Home() {
               >
                 <span className="dropzone__sweep" aria-hidden="true" />
                 <ScanFrameIcon className="dropzone__icon" />
-                <p className="dropzone__title">Drag your medicine photos here</p>
+                <p className="dropzone__title">{t("Drag your medicine photos here")}</p>
                 <p className="dropzone__hint">
                   Up to {MAX_PHOTOS} boxes — add them all, then check them in one go
                 </p>
@@ -286,7 +289,7 @@ export default function Home() {
                       <img src={photo.url} alt="" className="photo-chip__thumb" />
                       <div className="photo-chip__meta">
                         <p className="photo-chip__name">{photo.file.name}</p>
-                        <p className="photo-chip__status">Ready to check</p>
+                        <p className="photo-chip__status">{t("Ready to check")}</p>
                       </div>
                       <button
                         type="button"
@@ -330,10 +333,10 @@ export default function Home() {
                   disabled={busy || photos.length >= MAX_PHOTOS}
                 >
                   {photos.length === 0
-                    ? "Choose photos"
+                    ? t("Choose photos")
                     : photos.length >= MAX_PHOTOS
                       ? `Maximum ${MAX_PHOTOS} photos`
-                      : "Add another photo"}
+                      : t("Add another photo")}
                 </button>
               </div>
 
@@ -357,7 +360,7 @@ export default function Home() {
               )}
 
               <p className="upload-card__alt">
-                Don't have the box handy? <a href="#search">Search by name</a>
+                {isArabic ? "لا تملك العبوة؟" : "Don't have the box handy?"} <a href="#search">{t("Search by name")}</a>
               </p>
             </div>
           </div>
@@ -367,10 +370,9 @@ export default function Home() {
         <section className="picker">
           <div className="shell">
             <header className="section-head" data-reveal>
-              <h2 className="section-head__title">Pick the boxes you have</h2>
+              <h2 className="section-head__title">{t("Pick the boxes you have")}</h2>
               <p className="section-head__lede">
-                Recognise your medicine by its packaging, not by a generic name you were
-                never told. Tap a box to add it to the check.
+                {t("Recognise your medicine by its packaging, not by a generic name you were never told. Tap a box to add it to the check.")}
               </p>
             </header>
 
@@ -386,7 +388,7 @@ export default function Home() {
                       disabled={busy}
                       aria-pressed={isSelected}
                     >
-                      {isSelected && <span className="box-card__tag">Added</span>}
+                      {isSelected && <span className="box-card__tag">{isArabic ? "تمت الإضافة" : "Added"}</span>}
                       <span className="box-card__frame">
                         <img src={box.image} alt="" className="box-card__img" />
                       </span>
@@ -401,8 +403,7 @@ export default function Home() {
             </ul>
 
             <p className="picker__fallback">
-              Your box not here? <a href="#search">Photograph it instead</a> — that is what
-              MedGuard is built for.
+              {t("Your box not here?")} <a href="#search">{t("Photograph it instead")}</a> — {t("that is what MedGuard is built for.")}
             </p>
           </div>
         </section>
@@ -411,14 +412,13 @@ export default function Home() {
         <section className="checking">
           <div className="shell">
             <header className="section-head" data-reveal>
-              <h2 className="section-head__title">What we are actually checking</h2>
+              <h2 className="section-head__title">{t("What we are actually checking")}</h2>
             </header>
 
             <div className="checking__card" data-reveal>
               {chosen.length === 0 ? (
                 <p className="checking__empty">
-                  Nothing picked yet — tap a box above and we will show you the active
-                  ingredients we would look up.
+                  {t("Nothing picked yet — tap a box above and we will show you the active ingredients we would look up.")}
                 </p>
               ) : (
                 <div className="checking__flow">
@@ -444,8 +444,10 @@ export default function Home() {
                       <InfoIcon />
                       <p>
                         {canCheckBoxes
-                          ? `Every one of the ${(chosen.length * (chosen.length - 1)) / 2} possible pairs gets checked against the database.`
-                          : "Add one more box — a combination needs at least two medicines."}
+                          ? (isArabic
+                            ? `يتم فحص كل زوج من الأزواج المحتملة وعددها ${(chosen.length * (chosen.length - 1)) / 2} مقابل قاعدة البيانات.`
+                            : `Every one of the ${(chosen.length * (chosen.length - 1)) / 2} possible pairs gets checked against the database.`)
+                          : t("Add one more box — a combination needs at least two medicines.")}
                       </p>
                     </div>
                   </div>
@@ -471,13 +473,15 @@ export default function Home() {
                       <SpinnerIcon size={18} /> Checking
                     </>
                   ) : (
-                    `Check ${canCheckBoxes ? `these ${chosen.length} medicines` : "my medicines"}`
+                    canCheckBoxes
+                      ? (isArabic ? `افحص هذه الأدوية (${chosen.length})` : `Check these ${chosen.length} medicines`)
+                      : t("Check my medicines")
                   )}
                 </button>
                 <p className="checking__hint">
                   {canCheckBoxes
-                    ? "The verdict comes from the DDInter catalogue, not the AI."
-                    : "Pick at least two boxes to check a combination."}
+                    ? t("The verdict comes from the DDInter catalogue, not the AI.")
+                    : t("Pick at least two boxes to check a combination.")}
                 </p>
               </div>
             </div>
@@ -488,21 +492,69 @@ export default function Home() {
         <section className="search-band" id="search">
           <div className="shell shell--narrow">
             <header className="section-head" data-reveal>
-              <h2 className="section-head__title">Or type the name instead</h2>
+              <h2 className="section-head__title">{t("Or type the name instead")}</h2>
             </header>
 
+            <ConditionSelector
+              selectedConditions={selectedConditions}
+              onChange={setSelectedConditions}
+              disabled={busy}
+            />
+
             <form className="search-form" onSubmit={handleSearchSubmit} noValidate data-reveal>
+              <div className="search-tabs" role="tablist" aria-label={isArabic ? "الأدوية" : "Medicines"}>
+                {searchMedicines.map((_, index) => (
+                  <div className="search-tab" key={`medicine-${index}`}>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={activeSearchMedicine === index}
+                      className={activeSearchMedicine === index ? "search-tab__button search-tab__button--active" : "search-tab__button"}
+                      onClick={() => setActiveSearchMedicine(index)}
+                    >
+                      {isArabic ? `دواء ${index + 1}` : `Medicine ${index + 1}`}
+                    </button>
+                    {searchMedicines.length > 1 && (
+                      <button
+                        type="button"
+                        className="search-tab__remove"
+                        onClick={() => {
+                          setSearchMedicines((previous) => previous.filter((_, item) => item !== index));
+                          setActiveSearchMedicine(0);
+                        }}
+                        aria-label={isArabic ? "حذف الدواء" : "Remove medicine"}
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className="search-tabs__add"
+                  onClick={() => {
+                    setSearchMedicines((previous) => [...previous, ""]);
+                    setActiveSearchMedicine(searchMedicines.length);
+                  }}
+                  disabled={busy || searchMedicines.length >= 4}
+                >
+                  + {isArabic ? "دواء آخر" : "Add medicine"}
+                </button>
+              </div>
               <div className="search-form__field">
                 <SearchIcon className="search-form__icon" />
                 <input
                   type="text"
-                  value={searchText}
+                  value={currentSearchText}
                   onChange={(event) => {
-                    setSearchText(event.target.value);
+                    const value = event.target.value;
+                    setSearchMedicines((previous) => previous.map((medicine, index) =>
+                      index === activeSearchMedicine ? value : medicine
+                    ));
                     if (searchError) setSearchError("");
                   }}
                   placeholder="e.g. Panadol Extra"
-                  aria-label="Medicine name"
+                  aria-label={t("Medicine name")}
                   aria-invalid={Boolean(searchError)}
                   aria-describedby={searchError ? "search-error" : undefined}
                   disabled={busy}
@@ -514,7 +566,7 @@ export default function Home() {
                     <SpinnerIcon size={18} /> Looking that up
                   </>
                 ) : (
-                  "Check interactions"
+                  t("Check interactions")
                 )}
               </button>
             </form>
@@ -527,15 +579,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ---------- Provenance, where a commercial site puts testimonials ---------- */}
+        {/* ---------- Provenance ---------- */}
         <section className="provenance">
           <div className="shell shell--narrow">
             <div className="provenance__mark" data-reveal>
               <ShieldMark size={40} crossColor="var(--cyan)" />
             </div>
             <blockquote className="provenance__quote" data-reveal>
-              The AI only reads the names off your boxes. The verdict itself always comes
-              from a verified medical database — never from the AI's judgement.
+              {t("The AI only reads the names off your boxes. The verdict itself always comes from a verified medical database — never from the AI's judgement.")}
             </blockquote>
             <span className="provenance__rule" />
 
@@ -543,22 +594,19 @@ export default function Home() {
               <li className="source source--navy">
                 <h3>DDInter 2.0</h3>
                 <p>
-                  The interaction database that renders every verdict. Loaded locally, so a
-                  venue with no wifi cannot break it.
+                  {t("The interaction database that renders every verdict. Loaded locally, so a venue with no wifi cannot break it.")}
                 </p>
               </li>
               <li className="source source--cyan">
                 <h3>RxNorm</h3>
                 <p>
-                  Maps an Egyptian brand name to the generic ingredient the database can
-                  actually look up.
+                  {t("Maps an Egyptian brand name to the generic ingredient the database can actually look up.")}
                 </p>
               </li>
               <li className="source source--faint">
                 <h3>openFDA</h3>
                 <p>
-                  The fallback consulted when DDInter has no entry for a pair, before we
-                  admit we do not know.
+                  {t("The fallback consulted when DDInter has no entry for a pair, before we admit we do not know.")}
                 </p>
               </li>
             </ul>
@@ -571,19 +619,17 @@ export default function Home() {
             <div className="outcomes__grid">
               <article className="outcome outcome--light" data-reveal>
                 <PrinterIcon />
-                <h3>One page you can print</h3>
+                <h3>{t("One page you can print")}</h3>
                 <p>
-                  The result is a plain-language sheet a caregiver can hand to a doctor or
-                  pharmacist — not a screen full of clinical codes.
+                  {t("The result is a plain-language sheet a caregiver can hand to a doctor or pharmacist — not a screen full of clinical codes.")}
                 </p>
               </article>
 
               <article className="outcome outcome--dark" data-reveal style={{ transitionDelay: "0.12s" }}>
                 <InfoIcon />
-                <h3>When we cannot confirm, we say so</h3>
+                <h3>{t("When we cannot confirm, we say so")}</h3>
                 <p>
-                  An unrecognised box is never dropped or guessed at. It is shown to you as
-                  “not enough data to confirm — consult your pharmacist.”
+                  {t("An unrecognised box is never dropped or guessed at. It is shown to you as “not enough data to confirm — consult your pharmacist.”")}
                 </p>
               </article>
             </div>
@@ -600,19 +646,17 @@ export default function Home() {
                 <span>MedGuard</span>
               </div>
               <p className="site-footer__blurb">
-                MedGuard helps you read and match medicine names. It does not replace your
-                doctor or pharmacist, and it does not decide whether a combination is safe —
-                verified medical data does.
+                {t("MedGuard helps you read and match medicine names. It does not replace your doctor or pharmacist, and it does not decide whether a combination is safe — verified medical data does.")}
               </p>
             </div>
 
             <div>
-              <h4>Product</h4>
-              <a href="#search">Search by name</a>
+              <h4>{t("Product")}</h4>
+              <a href="#search">{t("Search by name")}</a>
             </div>
 
             <div>
-              <h4>Data</h4>
+              <h4>{t("Data")}</h4>
               <p>DDInter 2.0</p>
               <p>RxNorm</p>
               <p>openFDA</p>
@@ -620,7 +664,7 @@ export default function Home() {
           </div>
 
           <p className="site-footer__legal">
-            IMPACT 2026 — Healthcare Track prototype. Not a medical device.
+            {t("IMPACT 2026 — Healthcare Track prototype. Not a medical device.")}
           </p>
         </div>
       </footer>

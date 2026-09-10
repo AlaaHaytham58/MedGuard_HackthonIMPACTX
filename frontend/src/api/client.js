@@ -27,8 +27,16 @@ async function request(path, options = {}) {
   if (!response.ok) {
     // FastAPI nests the team's shared error envelope under `detail`.
     const envelope = body?.detail ?? body ?? {};
-    throw new ApiError(envelope.message || "MedGuard's server could not complete this check.", {
-      code: envelope.code || "HTTP_ERROR",
+    let message;
+    if (Array.isArray(envelope)) {
+      message = envelope.map((err) => err.msg || err.message).filter(Boolean).join(", ");
+    } else if (envelope.code === "GEMINI_QUOTA_EXCEEDED") {
+      message = "The AI reading service has reached today's request limit. Please try again later, or use the medicine picker below.";
+    } else {
+      message = envelope.message || "MedGuard's server could not complete this check.";
+    }
+    throw new ApiError(message, {
+      code: Array.isArray(envelope) ? "VALIDATION_ERROR" : (envelope.code || "HTTP_ERROR"),
       status: response.status,
     });
   }
@@ -37,9 +45,12 @@ async function request(path, options = {}) {
 }
 
 /** Photos in, full report out: vision, normalisation, interactions, duplicates, alternatives. */
-export function runPipeline(files) {
+export function runPipeline(files, conditions = [], medicineName = "", medicineNames = []) {
   const form = new FormData();
   files.forEach((file) => form.append("images", file));
+  form.append("conditions", JSON.stringify(conditions));
+  if (medicineName) form.append("medicine_name", medicineName);
+  if (medicineNames.length > 0) form.append("medicine_names", JSON.stringify(medicineNames));
   return request("/pipeline", { method: "POST", body: form });
 }
 

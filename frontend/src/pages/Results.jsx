@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TopNav from "../components/TopNav.jsx";
 import { useHistory } from "../state/HistoryContext.jsx";
+import { useLanguage } from "../state/LanguageContext.jsx";
 import { VERDICT } from "../api/report.js";
 import {
   AlertIcon,
@@ -28,6 +29,7 @@ export default function Results() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { history } = useHistory();
+  const { t, isArabic } = useLanguage();
   const report = history.find((entry) => entry.id === id) ?? history[0];
 
   if (!report) {
@@ -36,13 +38,12 @@ export default function Results() {
         <TopNav />
         <main className="results results--empty">
           <div className="shell shell--narrow">
-            <h1 className="results__emptyTitle">No check to show yet</h1>
+            <h1 className="results__emptyTitle">{t("No check to show yet")}</h1>
             <p className="results__emptyBody">
-              Photograph your medicine boxes or pick them from the list, and the report
-              will appear here.
+              {isArabic ? "صوّر عبوات أدويتك أو اخترها من القائمة، وسيظهر التقرير هنا." : "Photograph your medicine boxes or pick them from the list, and the report will appear here."}
             </p>
             <button type="button" className="mg-btn mg-btn--solid" onClick={() => navigate("/")}>
-              Start a check
+              {t("Start a check")}
             </button>
           </div>
         </main>
@@ -52,6 +53,13 @@ export default function Results() {
 
   const VerdictIcon = VERDICT_ICON[report.verdict];
   const hasFindings = report.interactions.length > 0 || report.duplicates.length > 0;
+  const conditionLabels = {
+    pregnancy: isArabic ? "الحمل" : "Pregnancy",
+    high_blood_pressure: isArabic ? "ارتفاع ضغط الدم" : "High blood pressure",
+    diabetes: isArabic ? "السكري" : "Diabetes",
+    lactation: isArabic ? "الرضاعة الطبيعية" : "Breastfeeding",
+    heart: isArabic ? "أمراض القلب" : "Heart disease",
+  };
 
   return (
     <div className="page">
@@ -63,11 +71,9 @@ export default function Results() {
             <div className="shell">
               <AlertIcon width={26} height={26} />
               <div>
-                <p className="mock-banner__title">Demo data — your photos were not read</p>
+                <p className="mock-banner__title">{t("Demo data — your photos were not read")}</p>
                 <p className="mock-banner__body">
-                  The server is running with <code>MOCK_EXTRACT=1</code>, so the medicines
-                  below are a fixed sample, not what is on your boxes. Turn mock extraction
-                  off to check real photos.
+                  {t("The server is running with")} <code>MOCK_EXTRACT=1</code>, {t("so the medicines below are a fixed sample, not what is on your boxes. Turn mock extraction off to check real photos.")}
                 </p>
               </div>
             </div>
@@ -80,9 +86,9 @@ export default function Results() {
             <div className="verdict__inner">
               <VerdictIcon className="verdict__icon" width={44} height={44} />
               <div>
-                <p className="verdict__kicker">Checked {report.checkedLabel}</p>
-                <h1 className="verdict__headline">{report.verdictHeadline}</h1>
-                <p className="verdict__summary">{report.verdictSummary}</p>
+                <p className="verdict__kicker">{t("Checked")} {t(report.checkedLabel)}</p>
+                <h1 className="verdict__headline">{t(report.verdictHeadline)}</h1>
+                <p className="verdict__summary">{t(report.verdictSummary)}</p>
               </div>
             </div>
 
@@ -104,17 +110,37 @@ export default function Results() {
         </section>
 
         <div className="shell results__body">
+          {report.conditionWarnings.length > 0 && (
+            <section className="condition-warning-list" aria-label={isArabic ? "تحذيرات ملف المريض" : "Patient profile warnings"}>
+              {report.conditionWarnings.map((warning, index) => (
+                <article className="condition-warning" key={`${warning.drug}-${warning.condition}-${index}`}>
+                  <AlertIcon width={24} height={24} />
+                  <div>
+                    <p className="condition-warning__title">
+                      {isArabic ? "تحذير متعلق بملف المريض" : "Patient profile warning"}
+                    </p>
+                    <p className="condition-warning__body">
+                      <strong>{warning.drug}</strong>{" — "}
+                      {isArabic
+                        ? `يتطلب حذرًا بسبب ${conditionLabels[warning.condition] || warning.condition}.`
+                        : `${warning.message} (${conditionLabels[warning.condition] || warning.condition})`}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </section>
+          )}
+
           {/* ---------- Duplicate active ingredient ---------- */}
           {report.duplicates.length > 0 && (
             <section className="panel panel--flag">
-              <h2 className="panel__title">Same ingredient, different boxes</h2>
+              <h2 className="panel__title">{t("Same ingredient, different boxes")}</h2>
               {report.duplicates.map((duplicate) => (
                 <div key={duplicate.activeIngredient} className="duplicate">
                   <div className="duplicate__head">
                     <AlertIcon width={22} height={22} />
                     <p>
-                      <strong>{duplicate.activeIngredient}</strong> appears in{" "}
-                      {duplicate.medications.length} of your boxes
+                      <strong>{duplicate.activeIngredient}</strong>{t(" appears in ")} {duplicate.medications.length}{t(" of your boxes")}
                     </p>
                   </div>
                   <p className="duplicate__body">{duplicate.message}</p>
@@ -134,7 +160,7 @@ export default function Results() {
           {/* ---------- Interactions ---------- */}
           {report.interactions.length > 0 && (
             <section className="panel">
-              <h2 className="panel__title">What the database found</h2>
+              <h2 className="panel__title">{t("What the database found")}</h2>
               <ul className="interaction-list">
                 {report.interactions.map((interaction) => (
                   <li
@@ -146,15 +172,15 @@ export default function Results() {
                         {interaction.drugA} <span>+</span> {interaction.drugB}
                       </p>
                       <span className="interaction__severity">
-                        {severityLabel(interaction.severity)}
+                        {t(severityLabel(interaction.severity))}
                       </span>
                     </div>
                     {interaction.description && (
-                      <p className="interaction__text">{interaction.description}</p>
+                      <p className="interaction__text">{t(interaction.description)}</p>
                     )}
                     {interaction.management && (
                       <p className="interaction__manage">
-                        <strong>What to do:</strong> {interaction.management}
+                        <strong>{t("What to do:")}</strong> {t(interaction.management)}
                       </p>
                     )}
                   </li>
@@ -166,7 +192,7 @@ export default function Results() {
           {/* ---------- Pairs with no record ---------- */}
           {report.noRecordPairs.length > 0 && (
             <section className="panel">
-              <h2 className="panel__title">Pairs with no record</h2>
+              <h2 className="panel__title">{t("Pairs with no record")}</h2>
               <ul className="norecord-list">
                 {report.noRecordPairs.map((pair) => (
                   <li key={`${pair.drugA}-${pair.drugB}`}>
@@ -181,35 +207,29 @@ export default function Results() {
           {/* ---------- Unreadable / unresolved ---------- */}
           {report.unresolved.length > 0 && (
             <section className="panel panel--flag">
-              <h2 className="panel__title">We could not identify these</h2>
+              <h2 className="panel__title">{t("We could not identify these")}</h2>
               <ul className="unresolved-list">
                 {report.unresolved.map((item) => (
                   <li key={item.inputName}>
-                    <strong>{item.inputName || "An unreadable photo"}</strong>
+                    <strong>{item.inputName || (isArabic ? "صورة غير مقروءة" : "An unreadable photo")}</strong>
                     {item.reason ? ` — ${item.reason}` : ""}
                   </li>
                 ))}
               </ul>
-              <p className="panel__note">
-                These were not checked at all. Show them to your pharmacist rather than
-                assuming they are fine.
-              </p>
+              <p className="panel__note">{t("These were not checked at all. Show them to your pharmacist rather than assuming they are fine.")}</p>
             </section>
           )}
 
           {/* ---------- Alternatives (badeel) ---------- */}
           {report.alternatives.length > 0 && (
             <section className="panel">
-              <h2 className="panel__title">Same ingredient, other brands</h2>
-              <p className="panel__lede">
-                If a pharmacy does not stock your brand, these Egyptian products contain
-                the same active ingredient. Confirm any swap with the pharmacist.
-              </p>
+              <h2 className="panel__title">{t("Same ingredient, other brands")}</h2>
+              <p className="panel__lede">{t("If a pharmacy does not stock your brand, these Egyptian products contain the same active ingredient. Confirm any swap with the pharmacist.")}</p>
               <div className="alt-groups">
                 {report.alternatives.map((group) => (
                   <div key={group.inputName} className="alt-group">
                     <p className="alt-group__source">
-                      Instead of <strong>{group.inputName}</strong>
+                      {t("Instead of")} <strong>{group.inputName}</strong>
                       <small>{group.genericName}</small>
                     </p>
                     <ul className="alt-list">
@@ -231,10 +251,10 @@ export default function Results() {
           {/* ---------- Nothing found at all ---------- */}
           {!hasFindings && report.noRecordPairs.length === 0 && (
             <section className="panel">
-              <h2 className="panel__title">Nothing to report</h2>
+              <h2 className="panel__title">{t("Nothing to report")}</h2>
               <p className="panel__lede">
                 {report.catalogWarning ??
-                  "No pairs could be compared. Ask your pharmacist before combining these."}
+                  t("No pairs could be compared. Ask your pharmacist before combining these.")}
               </p>
             </section>
           )}
@@ -243,8 +263,7 @@ export default function Results() {
           {report.imageWarnings.length > 0 && (
             <p className="results__imgwarn">
               <InfoIcon width={18} height={18} />
-              The photos had {report.imageWarnings.join(", ")}. A clearer shot may pick up
-              more of the label.
+              {t("The photos had")} {report.imageWarnings.join(", ")}. {t("A clearer shot may pick up more of the label.")}
             </p>
           )}
 
@@ -252,24 +271,23 @@ export default function Results() {
           <div className="results__provenance">
             <ShieldMark size={26} />
             <p>
-              The AI only read the names off your boxes. Every verdict above came from the
-              DDInter catalogue. MedGuard does not replace your doctor or pharmacist.
+              {t("The AI only read the names off your boxes. Every verdict above came from the DDInter catalogue. MedGuard does not replace your doctor or pharmacist.")}
             </p>
           </div>
 
           <div className="results__actions">
             <button type="button" className="mg-btn mg-btn--outline" onClick={() => window.print()}>
-              <PrinterIcon width={20} height={20} /> Print this page
+              <PrinterIcon width={20} height={20} /> {t("Print this page")}
             </button>
             <Link to="/" className="mg-btn mg-btn--solid">
-              Check other medicines
+              {t("Check other medicines")}
             </Link>
           </div>
 
           {/* ---------- Session history ---------- */}
           {history.length > 1 && (
             <section className="panel">
-              <h2 className="panel__title">Earlier checks this session</h2>
+              <h2 className="panel__title">{t("Earlier checks this session")}</h2>
               <ul className="history-list">
                 {history
                   .filter((entry) => entry.id !== report.id)

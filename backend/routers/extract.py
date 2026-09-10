@@ -1,6 +1,6 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from services.vision import extract_drugs
+from services.vision import GeminiQuotaExceeded, extract_drugs
 
 router = APIRouter()
 
@@ -22,6 +22,7 @@ async def extract(images: list[UploadFile] = File(...)) -> dict:
         )
 
     image_bytes_list = []
+    image_mime_types = []
     for image in images:
         content = await image.read()
         if len(content) > MAX_SIZE_BYTES:
@@ -35,9 +36,20 @@ async def extract(images: list[UploadFile] = File(...)) -> dict:
                 },
             )
         image_bytes_list.append(content)
+        image_mime_types.append(image.content_type or "image/jpeg")
 
     try:
-        return extract_drugs(image_bytes_list)
+        return extract_drugs(image_bytes_list, image_mime_types)
+    except GeminiQuotaExceeded as exc:
+        raise HTTPException(
+            status_code=429,
+            detail={
+                "error": True,
+                "code": "GEMINI_QUOTA_EXCEEDED",
+                "message": str(exc),
+                "details": {},
+            },
+        ) from exc
     except Exception as exc:
         raise HTTPException(
             status_code=503,
